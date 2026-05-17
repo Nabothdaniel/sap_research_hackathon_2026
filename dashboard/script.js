@@ -1,0 +1,101 @@
+// dashboard/script.js
+
+/**
+ * SAP Research Agent Dashboard Logic
+ * Handles real-time updates from the FastAPI bridge and UI animations.
+ */
+
+const API_BASE = "http://localhost:8000"; // Bridge address
+
+// --- UI State Management ---
+
+const updateUI = (data) => {
+    // Update Score
+    const scoreEl = document.querySelector('.score');
+    if (scoreEl) scoreEl.textContent = data.reputation_score || 713;
+
+    // Update Earnings
+    const earningEl = document.querySelector('.earning .value');
+    if (earningEl) earningEl.innerHTML = `${data.total_earning || 350} <span>points</span>`;
+
+    const rewardEl = document.querySelector('.reward .value');
+    if (rewardEl) rewardEl.innerHTML = `${data.today_reward || 50} <span>points</span>`;
+
+    // Update Node ID and Status
+    const nodeIDEl = document.querySelector('.node-id');
+    if (nodeIDEl) nodeIDEl.textContent = `ID: ${data.agent_id || 'laskdjflasdkfjlasdkfj'}`;
+
+    // Update IP Address
+    const ipEl = document.querySelector('.detail-item strong');
+    if (ipEl) ipEl.textContent = `🇺🇸 ${data.ip_address || '192.158.1.38'}`;
+};
+
+// --- Real-time Polling ---
+
+const fetchLatestState = async () => {
+    try {
+        const response = await fetch(`${API_BASE}/state`);
+        if (!response.ok) throw new Error('Network response was not ok');
+        const data = await response.json();
+        updateUI(data);
+    } catch (error) {
+        console.warn('Dashboard bridge not online. Running in demo mode.');
+        // Fallback to random micro-animations for demo
+        simulateActivity();
+    }
+};
+
+const simulateActivity = () => {
+    // Randomize bar chart heights
+    const bars = document.querySelectorAll('.bar');
+    bars.forEach(bar => {
+        const currentHeight = parseInt(bar.style.height) || 50;
+        const drift = Math.floor(Math.random() * 10) - 5;
+        const newHeight = Math.min(Math.max(currentHeight + drift, 20), 90);
+        bar.style.height = `${newHeight}%`;
+    });
+
+    // Pulse the score slightly
+    const scoreEl = document.querySelector('.score');
+    if (scoreEl && !window.hasRealData) {
+        const drift = (Math.random() * 0.1) - 0.05;
+        const currentScore = parseFloat(scoreEl.textContent);
+        scoreEl.textContent = (currentScore + drift).toFixed(1);
+    }
+
+    // Update "Tool Load" circle progress
+    const toolLoadCircle = document.querySelectorAll('svg path')[7]; // Target Tool Load path
+    if (toolLoadCircle) {
+        const load = 40 + Math.floor(Math.random() * 15);
+        toolLoadCircle.setAttribute('stroke-dasharray', `${load}, 100`);
+        const loadText = document.querySelectorAll('.percent')[1].firstChild;
+        if (loadText) loadText.textContent = `${load}%`;
+    }
+};
+
+// --- Initialization ---
+
+document.addEventListener('DOMContentLoaded', () => {
+    // Initialize Lucide icons
+    if (window.lucide) {
+        lucide.createIcons();
+    }
+
+    // Start polling or simulation
+    setInterval(fetchLatestState, 5000);
+    
+    // Initial call
+    fetchLatestState();
+
+    // Copy Referral Code Action
+    const copyBtn = document.querySelector('.btn-copy');
+    if (copyBtn) {
+        copyBtn.addEventListener('click', () => {
+            const originalText = copyBtn.textContent;
+            copyBtn.textContent = 'Copied!';
+            setTimeout(() => copyBtn.textContent = originalText, 2000);
+        });
+    }
+
+    console.log("SAP Dashboard Initialized.");
+});

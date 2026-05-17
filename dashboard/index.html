@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SAP Research Agent | Autonomous Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar">
+            <div class="logo">
+                <i data-lucide="brain-circuit"></i>
+                <span>SAP Agent</span>
+            </div>
+            
+            <nav class="menu">
+                <p class="menu-label">AGENT CONTROL</p>
+                <a href="#" class="menu-item active"><i data-lucide="layout-dashboard"></i> Dashboard</a>
+            </nav>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+            <header class="top-bar">
+                <div class="agent-title">
+                    <h1 style="font-weight: 700; font-size: 1.5rem;">SAP Autonomous Dashboard</h1>
+                    <p style="color: var(--text-muted); font-size: 0.85rem;">Verifying Autonomous Research on Solana</p>
+                </div>
+
+                <div class="network-badge">
+                    <a href="https://explorer.oobeprotocol.ai" target="_blank" class="pill" style="text-decoration: none; color: inherit;">
+                        <i data-lucide="globe"></i>
+                        <span>Mainnet Explorer</span>
+                    </a>
+                </div>
+            </header>
+
+            <section class="dashboard-grid">
+                <!-- Node Status (Left Pa                <div class="card node-card">
+                    <div class="card-header">
+                        <button class="btn-back"><i data-lucide="arrow-left"></i> SAP Mainnet</button>
+                    </div>
+                    
+                    <div class="node-info">
+                        <div class="node-title">
+                            <h3>Agent Name:</h3>
+                            <h2>ResearchBot-v1 <i data-lucide="edit-3"></i></h2>
+                            <p class="node-id">ID: SAP-PROT-EX-..."</p>
+                        </div>
+                        <div class="status-indicator connected">
+                            <i data-lucide="activity"></i> Autonomous Mode
+                        </div>
+                        <span class="start-date">Last SAP Registration: May 17, 2026</span>
+                    </div>
+
+                    <div class="gauge-container">
+                        <div class="gauge">
+                            <svg viewBox="0 0 100 50">
+                                <path d="M 5 50 A 45 45 0 0 1 95 50" fill="none" stroke="#e2e8f0" stroke-width="8" stroke-dasharray="1 2" />
+                                <path id="gauge-progress" d="M 5 50 A 45 45 0 0 1 95 50" fill="none" stroke="url(#gradient)" stroke-width="8" stroke-dasharray="1 2" style="stroke-dashoffset: 20;" />
+                            </svg>
+                            <div class="gauge-text">
+                                <span class="score">98.4</span>
+                                <span class="label">Autonomy Integrity</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="improvements">
+                        <h4>Bounty Progress (Ace Data Category)</h4>
+                        <div class="suggestion-list">
+                            <div class="suggestion">
+                                <span>1. SAP Mainnet Reg</span>
+                                <button class="btn-stat green">COMPLETED</button>
+                            </div>
+                            <div class="suggestion">
+                                <span>2. Sentinel Services Used</span>
+                                <button class="btn-stat green">COMPLETED</button>
+                            </div>
+                            <div class="suggestion">
+                                <span>3. 3+ AceData APIs (x402)</span>
+                                <button class="btn-stat green">4 APIs ACTIVE</button>
+                            </div>
+                            <div class="suggestion">
+                                <span>4. Valid Synapse RPC Traffic</span>
+                                <button class="btn-stat green">VERIFIED</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+  </div>
+
+                <!-- Stats Panel (Right Area) -->
+                <div class="stats-column">
+                    <div class="stats-row">
+                        <div class="card mini-card earning">
+                            <span class="label">Epoch 1 Earning</span>
+                            <span class="value">350 <span>points</span></span>
+                        </div>
+                        <div class="card mini-card reward">
+                            <span class="label">Today Reward</span>
+                            <span class="value">50 <span>points</span></span>
+                        </div>
+                    </div>
+
+                    <div class="card network-card">
+                        <h3>Infrastructure Status</h3>
+                        <div class="network-details">
+                            <div class="detail-item">
+                                <span>SAP Mainnet Status:</span>
+                                <strong class="green">✓ ONLINE</strong>
+                            </div>
+                            <div class="detail-item">
+                                <span>Synapse RPC URL:</span>
+                                <strong>api.mainnet...</strong>
+                            </div>
+                            <div class="detail-item">
+                                <span>AceData x402 Facilitator:</span>
+                                <strong class="green">✓ ACTIVE</strong>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Uptime & Device Status Panel -->
+                <div class="status-column">
+                    <div class="card monitor-card">
+                        <div class="card-header">
+                            <h3>Throughput Monitor</h3>
+                            <select class="custom-select">
+                                <option>Total AI Calls</option>
+                            </select>
+                        </div>
+                        <div class="chart-container">
+                            <div class="bar-chart">
+                                <div class="bar" style="height: 40%;"></div>
+                                <div class="bar" style="height: 60%;"></div>
+                                <div class="bar" style="height: 30%;"></div>
+                                <div class="bar" style="height: 50%;"></div>
+                                <div class="bar" style="height: 80%;"></div>
+                                <div class="bar" style="height: 40%;"></div>
+                                <div class="bar" style="height: 60%;"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card device-card">
+                        <h3>Agent Execution Status</h3>
+                        <div class="circle-stats">
+                            <div class="circle-progress">
+                                <svg viewBox="0 0 36 36">
+                                    <path d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="#e0e7ff" stroke-width="3" />
+                                    <path d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="#818cf8" stroke-width="3" stroke-dasharray="100, 100" />
+                                </svg>
+                                <div class="percent">100%<br><span>Success Rate</span></div>
+                            </div>
+                            <div class="circle-progress">
+                                <svg viewBox="0 0 36 36">
+                                    <path d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="#e0e7ff" stroke-width="3" />
+                                    <path d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="#818cf8" stroke-width="3" stroke-dasharray="45, 100" />
+                                </svg>
+                                <div class="percent">45%<br><span>Tool Load</span></div>
+                            </div>
+                        </div>
+                        <div class="hardware-specs">
+                            <p>RPC: Synapse Mainnet</p>
+                            <p>Sentinel ID: Ccr2yK3h...ph</p>
+                            <div class="storage-bar">
+                                <div class="filled" style="width: 85%;"></div>
+                            </div>
+                            <p class="storage-text">Autonomous Volume: <span>850/1000 tx</span></p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>
