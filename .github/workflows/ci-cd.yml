@@ -23,7 +23,7 @@ jobs:
           
       - name: Run Pytest
         run: |
-          pytest -v
+          python -m pytest -v
 
   merge-to-main:
     name: Auto-Merge to Main
