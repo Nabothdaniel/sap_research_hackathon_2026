@@ -1,0 +1,52 @@
+🚀 BOUNTY CATEGORY: Ace Data Cloud Usage ($700 Pool)
+
+Title: The SAP Autonomous Research Engine 🤖📈
+
+[X/Twitter Hook Options]
+
+Option 1 (The "Institutional" Hook):
+"Most on-chain volume is spam. We built the opposite: A high-signal, autonomous research agent that ONLY moves when there's something worth researching. 🧵
+
+1/ Triggered by real-time market signals (>4% SOL moves)
+2/ Dynamically discovers tools on SAP
+3/ Settle payments via x402 
+Check the live dashboard (Render) 👇"
+
+Option 2 (The "DePIN" Hook):
+"Meet the first truly autonomous DePIN research bot on Solana. No humans, no manual prompts, just pure on-chain intelligence. ⚡️
+
+Integrated with:
+✅ @OOBEonSol (Synapse Agent Protocol)
+✅ @AceDataCloud (Multi-API NLP Pipeline)
+✅ x402 (Zero-friction settlements)
+Live Dashboard in the link below! 🎨"
+
+---
+
+[Demo Video Script Points - Reference for Tomorrow]
+
+1. THE TRIGGER (0-15s)
+- "Our agent doesn't sleep. It monitors private WebSocket feeds for market events. When Solana moves, the agent wakes up."
+- Show the terminal logs of 'EventWatcher' detecting a price move.
+
+2. TOOL DISCOVERY (15-30s)
+- "Instead of hardcoding APIs, we use the Synapse Agent Protocol (SAP). The agent queries the registry and discovers the best Ace Data Cloud tools for the job locally."
+
+3. EXECUTION & AI (30-45s)
+- "We use a 4x pipeline: Web Search -> Summarize -> Sentiment -> Entity Extraction. This ensures our research is deep and high-quality."
+- Show the Ace Data Cloud logs.
+
+4. X402 SETTLEMENT (45-60s)
+- "Execution isn't free. Our agent settles micro-payments autonomously via the x402 facilitator. Real volume, real usage, real activity on-chain."
+- Show a quick glance at the transaction hash/logs.
+
+5. THE DASHBOARD (60-90s)
+- "Finally, our custom dashboard provides a high-fidelity control center. Track reputation, tool load, and autonomous throughput in real-time."
+- Show off the mobile-responsive, glassmorphic UI!
+
+---
+
+[Submission Checklist]
+- Github Repo: https://github.com/Nabothdaniel/sap_research_hackathon_2026
+- Tags: @OOBEonSol @AceDataCloud
+- Category: Ace Data Cloud Usage Category
