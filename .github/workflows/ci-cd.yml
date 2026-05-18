@@ -23,6 +23,7 @@ jobs:
           
       - name: Run Pytest
         run: |
+          export PYTHONPATH=$PYTHONPATH:.
           python -m pytest -v
 
   merge-to-main:
