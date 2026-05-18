@@ -42,11 +42,11 @@ jobs:
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
           
-          # Ensure local main is tracking remote main
+          # Fetch all branches to ensure we can switch
+          git fetch origin main:main
           git checkout main
-          git pull origin main
           
-          # Merge beta into main
+          # Merge beta into main (using target commit directly)
           git merge origin/beta --no-ff -m "chore: auto-merge beta to main [skip ci]"
           
           # Push to production branch
