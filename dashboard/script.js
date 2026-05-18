@@ -5,29 +5,37 @@
  * Handles real-time updates from the FastAPI bridge and UI animations.
  */
 
-const API_BASE = "http://localhost:8000"; // Bridge address
+// Use relative path for production (Render) or absolute for local dev
+const API_BASE = window.location.origin; 
 
 // --- UI State Management ---
 
 const updateUI = (data) => {
+    window.hasRealData = true; // Stop simulation on real data
+
     // Update Score
     const scoreEl = document.querySelector('.score');
-    if (scoreEl) scoreEl.textContent = data.reputation_score || 713;
+    if (scoreEl) scoreEl.textContent = data.reputation_score || 98.4;
 
-    // Update Earnings
+    // Update Earnings (Total Payload)
     const earningEl = document.querySelector('.earning .value');
-    if (earningEl) earningEl.innerHTML = `${data.total_earning || 350} <span>points</span>`;
+    if (earningEl) earningEl.innerHTML = `${(data.total_earning || 850).toFixed(0)} <span>points</span>`;
 
     const rewardEl = document.querySelector('.reward .value');
-    if (rewardEl) rewardEl.innerHTML = `${data.today_reward || 50} <span>points</span>`;
+    if (rewardEl) rewardEl.innerHTML = `${(data.today_reward || 12).toFixed(1)} <span>points</span>`;
 
-    // Update Node ID and Status
+    // Update Agent ID and Status
     const nodeIDEl = document.querySelector('.node-id');
-    if (nodeIDEl) nodeIDEl.textContent = `ID: ${data.agent_id || 'laskdjflasdkfjlasdkfj'}`;
+    if (nodeIDEl) nodeIDEl.textContent = `ID: ${data.agent_id.substring(0, 20)}...`;
 
-    // Update IP Address
-    const ipEl = document.querySelector('.detail-item strong');
-    if (ipEl) ipEl.textContent = `🇺🇸 ${data.ip_address || '192.158.1.38'}`;
+    // Update Autonomous Volume Bar
+    const storageTextEl = document.querySelector('.storage-text span');
+    if (storageTextEl) {
+        const vol = (data.total_earning || 850);
+        storageTextEl.textContent = `${vol.toFixed(0)}/1000 tx`;
+        const bar = document.querySelector('.filled');
+        if (bar) bar.style.width = `${(vol / 1000) * 100}%`;
+    }
 };
 
 // --- Real-time Polling ---
