@@ -24,19 +24,45 @@ document.addEventListener('DOMContentLoaded', () => {
             const data = await response.json();
 
             // 1. Core Metrics with Animation
-            animateValue(elements.reputationScore, parseInt(elements.reputationScore.innerText) || 0, data.reputation_score, 1000);
+            if (elements.reputationScore) animateValue(elements.reputationScore, parseInt(elements.reputationScore.innerText) || 0, data.reputation_score, 1000);
             
             elements.totalEarning.innerText = data.total_earning.toLocaleString();
             elements.todayReward.innerText = data.today_reward.toLocaleString();
             elements.cpuLoad.innerText = data.cpu_load;
             elements.storageUsed.innerText = data.storage_used;
 
-            // 2. Volume Chart
+            // 2. Volume Chart & Transactions
             updateVolumeChart(data.volume_history);
+            updateTransactionList(data.volume_transactions);
 
         } catch (error) {
             console.warn('Sync error:', error);
         }
+    }
+
+    /**
+     * Renders research transactions
+     */
+    function updateTransactionList(transactions) {
+        const list = document.getElementById('transaction-list');
+        if (!list || !transactions) return;
+        
+        list.innerHTML = '';
+        transactions.forEach(tx => {
+            const item = document.createElement('div');
+            item.className = 'tx-item';
+            item.innerHTML = `
+                <div style="flex: 1;">
+                    <div style="font-size: 0.85rem; font-weight: 600;">${tx.topic}</div>
+                    <div style="font-size: 0.7rem; color: var(--text-dim);">${tx.time}</div>
+                </div>
+                <div style="text-align: right;">
+                    <div style="font-size: 0.85rem; font-weight: 700; color: var(--success);">+${tx.bounty} PTS</div>
+                    <div style="font-size: 0.65rem; color: var(--text-muted); opacity: 0.5;">${tx.status}</div>
+                </div>
+            `;
+            list.appendChild(item);
+        });
     }
 
     /**
