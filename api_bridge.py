@@ -2,11 +2,14 @@
 import os
 import json
 import webbrowser
-from fastapi import FastAPI
+import asyncio
+from fastapi import FastAPI, BackgroundTasks
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel
 from typing import List, Optional
+
+from agent.orchestrator import ResearchAgentOrchestrator
 
 app = FastAPI(title="SAP Research Agent Bridge")
 
@@ -26,6 +29,21 @@ async def root():
     """Redirect root to the dashboard."""
     from fastapi.responses import RedirectResponse
     return RedirectResponse(url="/dashboard/index.html")
+
+# --- Autonomous Activation ---
+
+@app.post("/trigger-run")
+async def trigger_run(background_tasks: BackgroundTasks):
+    """
+    Endpoint for external cron services (like cron-job.org) to trigger 
+    the autonomous research loop.
+    """
+    async def run_agent():
+        orchestrator = ResearchAgentOrchestrator()
+        await orchestrator.run_all_topics(trigger_reason="external_cron_trigger")
+    
+    background_tasks.add_task(run_agent)
+    return {"status": "Research run triggered in background"}
 
 # --- State Model ---
 
