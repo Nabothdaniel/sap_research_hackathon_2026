@@ -3,121 +3,194 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SAP Research Agent | Autonomous Dashboard</title>
+    <title>SAP Research Agent | Autonomous Control Center</title>
     <link rel="stylesheet" href="style.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/lucide@latest"></script>
 </head>
 <body>
-    <div class="app-container" style="justify-content: center; align-items: flex-start;">
-        <!-- Focused Research Dashboard -->
-        <main class="main-content" style="width: 100%; max-width: 1200px;">
-            <!-- Simple Header for Context -->
-            <div style="margin-bottom: 32px; display: flex; justify-content: space-between; align-items: flex-end;">
-                <div>
-                    <h1 style="font-size: 2rem; color: var(--text-main);">SAP Research Core</h1>
-                    <p style="color: var(--text-muted);">Fully Autonomous DePIN Intelligence</p>
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <div class="logo-container">
+            <div class="logo-icon">
+                <i data-lucide="brain" style="color: white; width: 18px;"></i>
+            </div>
+            <span class="logo-text">SAP Engine</span>
+        </div>
+
+        <nav class="nav-menu">
+            <span class="nav-label">Main Menu</span>
+            <a href="#" class="nav-item active">
+                <i data-lucide="layout-dashboard" style="width: 18px;"></i> Dashboard
+            </a>
+            <a href="#" class="nav-item">
+                <i data-lucide="cpu" style="width: 18px;"></i> Research Nodes
+            </a>
+            <a href="#" class="nav-item">
+                <i data-lucide="gem" style="width: 18px;"></i> Bounty Logs
+            </a>
+            <a href="#" class="nav-item">
+                <i data-lucide="users" style="width: 18px;"></i> Protocol Refs
+            </a>
+            <a href="#" class="nav-item">
+                <i data-lucide="settings" style="width: 18px;"></i> Engine Settings
+            </a>
+        </nav>
+
+        <div class="sidebar-footer">
+            <span class="nav-label">Protocol Links</span>
+            <a href="#" class="nav-item"><i data-lucide="twitter" style="width: 16px;"></i> Twitter (X)</a>
+            <a href="#" class="nav-item"><i data-lucide="message-square" style="width: 16px;"></i> Discord</a>
+        </div>
+    </aside>
+
+    <main class="main-wrapper">
+        <!-- Top Toolbar -->
+        <div class="top-bar">
+            <div class="pill">
+                <i data-lucide="user-plus" style="width: 16px; color: var(--success);"></i>
+                Referrals: <strong>12</strong>
+            </div>
+            <button class="btn-dark">Copy API Hook</button>
+            <div class="pill">
+                <i data-lucide="medal" style="width: 16px; color: var(--primary);"></i>
+                Rank: <strong>Alpha</strong>
+            </div>
+            <div class="pill" style="background: #f8fafc;">
+                <i data-lucide="wallet" style="width: 16px; color: #f59e0b;"></i>
+                Balance: <strong>2,250 PTS</strong>
+            </div>
+        </div>
+
+        <!-- Dashboard Layout -->
+        <div class="dashboard-grid">
+            
+            <!-- Engine Main: Reputation & Suggestions -->
+            <div class="card engine-card">
+                <div class="card-header">
+                    <div>
+                        <span class="stat-label">Autonomous Engine:</span>
+                        <h2 style="font-size: 1.25rem;">SAP-NODE-EX-992</h2>
+                        <span id="agent-id-mini" style="font-size: 0.7rem; color: var(--text-dim);">ID: 0x992...BETA</span>
+                    </div>
+                    <div class="status-indicator">CONNECTED</div>
                 </div>
-                <div class="action-pill" style="height: fit-content;">
-                    <i data-lucide="database" style="color: #06b6d4;"></i>
-                    <span>Balance: <strong>2,250 points</strong></span>
+
+                <div class="gauge-container">
+                    <div class="arc-gauge" id="arc-gauge">
+                        <!-- Filled via script -->
+                        <div class="arc-segment active" style="transform: rotate(-60deg)"></div>
+                        <div class="arc-segment active" style="transform: rotate(-45deg)"></div>
+                        <div class="arc-segment active" style="transform: rotate(-30deg)"></div>
+                        <div class="arc-segment active" style="transform: rotate(-15deg)"></div>
+                        <div class="arc-segment active" style="transform: rotate(0deg)"></div>
+                        <div class="arc-segment active" style="transform: rotate(15deg)"></div>
+                        <div class="arc-segment active" style="transform: rotate(30deg)"></div>
+                        <div class="arc-segment" style="transform: rotate(45deg)"></div>
+                        <div class="arc-segment" style="transform: rotate(60deg)"></div>
+                    </div>
+                    <h1 class="aq-score" id="reputation-score">713</h1>
+                    <p class="aq-label">Autonomy Quotient (AQ)</p>
+                </div>
+
+                <div class="optimization-list">
+                    <span class="nav-label">Protocol Improvements</span>
+                    <div class="opt-item">
+                        <span class="opt-text">1. Increase Topic Depth</span>
+                        <button class="btn-outline">Optimize</button>
+                    </div>
+                    <div class="opt-item">
+                        <span class="opt-text">2. Expand Discovery Range</span>
+                        <button class="btn-outline">Optimize</button>
+                    </div>
+                    <div class="opt-item">
+                        <span class="opt-text">3. Harden x402 Settlement</span>
+                        <button class="btn-outline">Optimize</button>
+                    </div>
                 </div>
             </div>
 
-            <!-- Main Layout Grid -->
-            <div class="main-layout">
-                <!-- Left: Agent Card -->
-                <div class="card node-card">
-                    <div class="node-meta" style="margin-bottom: 24px;">
-                        <p style="font-size: 0.75rem; color: #94a3b8;">SAP Registry:</p>
-                        <h2 style="font-size: 1.25rem;">SAP Research Bot-v1</h2>
-                        <p id="agent-id-full" style="font-size: 0.75rem; color: #cbd5e1; margin-top: 4px;">ID: SAP-PROT-EX-992-BETA-01</p>
-                    </div>
-
-                    <div class="segmented-gauge">
-                        <div class="gauge-segment active"></div>
-                        <div class="gauge-segment active"></div>
-                        <div class="gauge-segment active"></div>
-                        <div class="gauge-segment active"></div>
-                        <div class="gauge-segment active"></div>
-                        <div class="gauge-segment active"></div>
-                        <div class="gauge-segment active"></div>
-                        <div class="gauge-segment"></div>
-                        <div class="gauge-segment"></div>
-                        <div class="gauge-segment"></div>
-                    </div>
-                    <div class="score-display">
-                        <h1 id="autonomy-score">713</h1>
-                        <p>Autonomy Quotient</p>
-                    </div>
-
-                    <div class="infra-status" style="margin-top: 32px; padding-top: 24px; border-top: 1px solid #f1f5f9;">
-                        <div style="display: flex; justify-content: space-between; margin-bottom: 12px; font-size: 0.8rem;">
-                            <span style="color: #94a3b8;">SAP Mainnet:</span>
-                            <strong style="color: #22c55e;">✓ REGISTERED</strong>
+            <!-- Right Column: Earnings -->
+            <div class="stats-column">
+                <div class="card compact-card bg-lime">
+                    <span class="stat-label">Total Research Bounty</span>
+                    <h1 class="stat-value" id="total-earning">350 <span style="font-size: 1rem; opacity: 0.6;">PTS</span></h1>
+                </div>
+                <div class="card compact-card bg-blue">
+                    <span class="stat-label">Today's Protocol Yield</span>
+                    <h1 class="stat-value" id="today-reward">50 <span style="font-size: 1rem; opacity: 0.6;">PTS</span></h1>
+                </div>
+                <!-- Network Stats Card -->
+                <div class="card" style="padding: 24px;">
+                    <span class="stat-label">Node Network Health</span>
+                    <div style="display: flex; flex-direction: column; gap: 12px; margin-top: 20px;">
+                        <div style="display: flex; justify-content: space-between; font-size: 0.8rem;">
+                            <span style="color: var(--text-dim);">IP Address:</span>
+                            <span style="font-weight: 600;">192.158.1.38</span>
                         </div>
                         <div style="display: flex; justify-content: space-between; font-size: 0.8rem;">
-                            <span style="color: #94a3b8;">Sentinel RPC:</span>
-                            <strong style="color: #4f46e5;">CONNECTING...</strong>
+                            <span style="color: var(--text-dim);">Protocol Version:</span>
+                            <span style="font-weight: 600;">v1.4.2-STABLE</span>
                         </div>
-                    </div>
-                </div>
-
-                <!-- Mid: Rewards -->
-                <div class="stat-grid">
-                    <div class="card bg-lime" style="border: none;">
-                        <p style="font-size: 0.8rem; font-weight: 600;">Cumulative Bounty</p>
-                        <h1 id="epoch-earning" style="font-size: 2.5rem; margin-top: 12px;">350 <span style="font-size: 1rem; opacity: 0.5;">PTS</span></h1>
-                    </div>
-                    <div class="card bg-purple" style="border: none;">
-                        <p style="font-size: 0.8rem; font-weight: 600;">Daily Yield</p>
-                        <h1 id="today-reward" style="font-size: 2.5rem; margin-top: 12px;">50 <span style="font-size: 1rem; opacity: 0.5;">PTS</span></h1>
-                    </div>
-                    <div class="card">
-                        <h4 style="font-size: 0.85rem; margin-bottom: 16px;">Ace Data Analytics Usage</h4>
-                        <div class="bar-chart" style="display: flex; align-items: flex-end; gap: 6px; height: 80px;">
-                            <div class="bar" style="height: 40%; width: 10px; background: #e0e7ff; border-radius: 4px;"></div>
-                            <div class="bar" style="height: 60%; width: 10px; background: #e0e7ff; border-radius: 4px;"></div>
-                            <div class="bar" style="height: 80%; width: 10px; background: #818cf8; border-radius: 4px;"></div>
-                            <div class="bar" style="height: 50%; width: 10px; background: #e0e7ff; border-radius: 4px;"></div>
-                            <div class="bar" style="height: 90%; width: 10px; background: #818cf8; border-radius: 4px;"></div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Right: Research Metrics -->
-                <div class="stat-grid">
-                    <div class="card" style="text-align: center;">
-                        <h4 style="font-size: 0.85rem; margin-bottom: 16px;">Autonomous Research Bandwidth</h4>
-                        <div class="progress-circle" style="width: 100px; height: 100px; margin: 0 auto; border: 10px solid #f1f5f9; border-top-color: #818cf8; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.25rem; font-weight: 700;">85%</div>
-                        <p id="volume-text" style="font-size: 0.75rem; color: #94a3b8; margin-top: 12px;">850/1000 tasks processed</p>
-                    </div>
-                    <div class="card">
-                        <h4 style="font-size: 0.85rem; margin-bottom: 16px;">Protocol Compliance</h4>
-                        <div style="background: #f8fafc; padding: 12px; border-radius: 12px; font-size: 0.8rem; margin-bottom: 8px;">
-                            <i data-lucide="check-circle" style="width: 14px; color: #10b981;"></i> Ace Data Search v1
-                        </div>
-                        <div style="background: #f8fafc; padding: 12px; border-radius: 12px; font-size: 0.8rem;">
-                            <i data-lucide="check-circle" style="width: 14px; color: #10b981;"></i> x402 Settlement SMC
+                        <div style="display: flex; justify-content: space-between; font-size: 0.8rem;">
+                            <span style="color: var(--text-dim);">Latency:</span>
+                            <span style="font-weight: 600; color: var(--success);">24ms</span>
                         </div>
                     </div>
                 </div>
             </div>
-            
-            <!-- Research Feed Terminal -->
-            <div class="card analysis-terminal" style="margin-top: 24px; min-height: 300px;">
-                <div class="card-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
-                    <h3 style="font-size: 1rem;"><i data-lucide="microscope" style="width: 18px; color: var(--primary);"></i> Autonomous Research Registry</h3>
-                    <div class="badge online">LIVE SESSION</div>
+
+            <!-- Right: Volume Monitor -->
+            <div class="card stats-column" style="padding: 24px;">
+                <div class="chart-header">
+                    <span class="stat-label">Research Volume</span>
+                    <select style="border: none; background: #f8fafc; font-size: 0.75rem; padding: 4px 8px; border-radius: 4px;">
+                        <option>Hourly</option>
+                        <option>Daily</option>
+                    </select>
                 </div>
-                <div id="analysis-feed" class="feed-container" style="height: 350px;">
-                    <div class="feed-item placeholder"><p>Synchronizing research cycles from DePIN nodes...</p></div>
+                
+                <div class="bar-chart">
+                    <div class="chart-bar highlight" style="height: 40%;"></div>
+                    <div class="chart-bar highlight" style="height: 60%;"></div>
+                    <div class="chart-bar active" style="height: 85%;"></div>
+                    <div class="chart-bar highlight" style="height: 50%;"></div>
+                    <div class="chart-bar active" style="height: 90%;"></div>
+                    <div class="chart-bar highlight" style="height: 30%;"></div>
+                    <div class="chart-bar highlight" style="height: 45%;"></div>
+                </div>
+
+                <div class="gauge-row">
+                    <div style="text-align: center; flex: 1;">
+                        <div class="circle-gauge primary">85%</div>
+                        <p style="font-size: 0.7rem; color: var(--text-dim); margin-top: 8px;">Trust Rate</p>
+                    </div>
+                    <div style="text-align: center; flex: 1;">
+                        <div class="circle-gauge primary" style="border-top-color: var(--accent-purple);">75%</div>
+                        <p style="font-size: 0.7rem; color: var(--text-dim); margin-top: 8px;">Success Rate</p>
+                    </div>
+                </div>
+
+                <div style="margin-top: 32px; font-size: 0.8rem; border-top: 1px solid var(--border-color); pt: 16px;">
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+                        <span style="color: var(--text-dim);">Load:</span>
+                        <strong>4-Core / 8-Thread</strong>
+                    </div>
+                    <div style="display: flex; justify-content: space-between;">
+                        <span style="color: var(--text-dim);">Storage:</span>
+                        <strong>600MB / 800MB</strong>
+                    </div>
                 </div>
             </div>
-        </main>
-    </div>
+
+            <!-- Terminal Strip: Live Thread Feed -->
+            <div class="terminal-strip" id="analysis-feed">
+                <div class="terminal-line">[SYSTEM] <b>NODE-992</b> handshaking with SAP Mainnet... DONE.</div>
+                <div class="terminal-line">[DATA] Discovery loop initiated. High-density topics detected.</div>
+            </div>
+
+        </div>
+    </main>
+
     <script src="script.js"></script>
     <script>
         lucide.createIcons();

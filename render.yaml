@@ -17,10 +17,3 @@ services:
     runtime: static
     buildCommand: "touch .noop"
     publishPath: dashboard
-
-  - type: cron
-    name: sap-hourly-research
-    runtime: python
-    schedule: "0 * * * *"
-    buildCommand: "pip install -r requirements.txt"
-    startCommand: "python main.py"
