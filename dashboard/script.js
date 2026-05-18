@@ -7,10 +7,15 @@ document.addEventListener('DOMContentLoaded', () => {
         reputationScore: document.getElementById('reputation-score'),
         totalEarning: document.getElementById('total-earning'),
         todayReward: document.getElementById('today-reward'),
+        balance: document.getElementById('balance-val'),
+        rank: document.getElementById('rank-val'),
         cpuLoad: document.getElementById('cpu-load'),
+        cpuBar: document.getElementById('cpu-bar'),
         storageUsed: document.getElementById('storage-used'),
+        storageBar: document.getElementById('storage-bar'),
         analysisFeed: document.getElementById('analysis-feed'),
-        volumeChart: document.getElementById('volume-chart')
+        volumeChart: document.getElementById('volume-chart'),
+        transactionList: document.getElementById('transaction-list')
     };
 
     let lastLogCount = 0;
@@ -23,15 +28,23 @@ document.addEventListener('DOMContentLoaded', () => {
             const response = await fetch(stateUrl);
             const data = await response.json();
 
-            // 1. Core Metrics with Animation
+            // 1. High-Impact Metrics
             if (elements.reputationScore) animateValue(elements.reputationScore, parseInt(elements.reputationScore.innerText) || 0, data.reputation_score, 1000);
             
             elements.totalEarning.innerText = data.total_earning.toLocaleString();
             elements.todayReward.innerText = data.today_reward.toLocaleString();
-            elements.cpuLoad.innerText = data.cpu_load;
-            elements.storageUsed.innerText = data.storage_used;
+            elements.balance.innerText = `${data.balance.toLocaleString()} PTS`;
+            if (elements.rank) elements.rank.innerText = data.rank;
 
-            // 2. Volume Chart & Transactions
+            // 2. Hardware Progress Bars (Dramatic)
+            elements.cpuLoad.innerText = data.cpu_load;
+            elements.cpuBar.style.width = `${data.cpu_load}%`;
+            
+            elements.storageUsed.innerText = data.storage_used;
+            const storagePercent = (data.storage_used / data.storage_total) * 100;
+            elements.storageBar.style.width = `${storagePercent}%`;
+
+            // 3. Analytics & Ledger
             updateVolumeChart(data.volume_history);
             updateTransactionList(data.volume_transactions);
 
@@ -41,47 +54,42 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     /**
-     * Renders research transactions
+     * Renders professional research transactions
      */
     function updateTransactionList(transactions) {
-        const list = document.getElementById('transaction-list');
-        if (!list || !transactions) return;
-        
-        list.innerHTML = '';
+        if (!elements.transactionList || !transactions) return;
+        elements.transactionList.innerHTML = '';
         transactions.forEach(tx => {
             const item = document.createElement('div');
-            item.className = 'tx-item';
+            item.className = 'ledger-item';
             item.innerHTML = `
-                <div style="flex: 1;">
-                    <div style="font-size: 0.85rem; font-weight: 600;">${tx.topic}</div>
-                    <div style="font-size: 0.7rem; color: var(--text-dim);">${tx.time}</div>
+                <div>
+                    <div class="ledger-topic">${tx.topic}</div>
+                    <div class="ledger-meta">${tx.time} • SAP PROTOCOL v1.4</div>
                 </div>
-                <div style="text-align: right;">
-                    <div style="font-size: 0.85rem; font-weight: 700; color: var(--success);">+${tx.bounty} PTS</div>
-                    <div style="font-size: 0.65rem; color: var(--text-muted); opacity: 0.5;">${tx.status}</div>
-                </div>
+                <div class="ledger-value">+${tx.bounty} PTS</div>
             `;
-            list.appendChild(item);
+            elements.transactionList.appendChild(item);
         });
     }
 
     /**
-     * Renders bars for the volume chart
+     * Renders dramatic bar chart
      */
     function updateVolumeChart(history) {
         if (!elements.volumeChart || !history) return;
         elements.volumeChart.innerHTML = '';
         history.forEach((val, i) => {
             const bar = document.createElement('div');
-            bar.className = 'chart-bar';
-            if (i === history.length - 1) bar.classList.add('active');
+            bar.className = 'bar';
+            if (val > 60) bar.classList.add('accent');
             bar.style.height = `${val}%`;
             elements.volumeChart.appendChild(bar);
         });
     }
 
     /**
-     * Streams logs to the terminal
+     * Streams logs to the intelligence terminal
      */
     async function updateLogs() {
         try {
@@ -108,7 +116,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     /**
-     * Animation utility
+     * Numeric animation helper
      */
     function animateValue(obj, start, end, duration) {
         if (!obj || start === end) return;
@@ -123,12 +131,12 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     /**
-     * Actions
+     * Button Actions
      */
     window.copyApiHook = () => {
         const url = window.location.origin + '/trigger-run';
         navigator.clipboard.writeText(url).then(() => {
-            showToast('API Trigger Hook Copied!');
+            showToast('Premium API Trigger Hook Copied!');
         });
     };
 
@@ -144,16 +152,8 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 3000);
     }
 
-    // Init
+    // Initialize Loops
     updateDashboard();
     setInterval(updateDashboard, 5000);
     setInterval(updateLogs, 3000);
-    
-    // Initial sequence
-    setTimeout(() => {
-        const line = document.createElement('div');
-        line.className = 'term-line';
-        line.innerHTML = `<span class="term-time">[${new Date().toLocaleTimeString()}]</span> <span class="term-tag">SYSTEM</span> <span class="term-msg">SAP v1.4.2 Active. System Healthy.</span>`;
-        elements.analysisFeed.appendChild(line);
-    }, 1000);
 });
