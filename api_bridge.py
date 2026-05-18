@@ -10,6 +10,7 @@ from pydantic import BaseModel
 from typing import List, Optional
 
 from agent.orchestrator import ResearchAgentOrchestrator
+from services.topic_engine import TopicEngine
 
 app = FastAPI(title="SAP Research Agent Bridge")
 
@@ -30,8 +31,10 @@ async def trigger_run(background_tasks: BackgroundTasks):
     Supports both GET (for manual testing) and POST (for automated services).
     """
     async def run_agent():
+        topic_engine = TopicEngine()
+        topics = await topic_engine.build_run_topics()
         orchestrator = ResearchAgentOrchestrator()
-        await orchestrator.run_all_topics(trigger_reason="external_cron_trigger")
+        await orchestrator.run_all_topics(topics=topics, trigger_reason="external_trigger")
     
     background_tasks.add_task(run_agent)
     return {"status": "Research run triggered in background"}
@@ -88,6 +91,18 @@ async def get_logs(limit: int = 10):
         # Implementation to list recently created logs
         pass
     return logs
+
+@app.on_event("startup")
+async def startup_event():
+    """Automatically start a research run when the server starts."""
+    async def initial_run():
+        topic_engine = TopicEngine()
+        topics = await topic_engine.build_run_topics()
+        orchestrator = ResearchAgentOrchestrator()
+        await orchestrator.run_all_topics(topics=topics, trigger_reason="server_startup")
+
+    # Run in background so the server doesn't block startup
+    asyncio.create_task(initial_run())
 
 if __name__ == "__main__":
     import uvicorn
