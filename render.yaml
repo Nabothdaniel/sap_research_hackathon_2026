@@ -2,8 +2,8 @@ services:
   - type: web
     name: sap-research-agent-api
     runtime: python
-    buildCommand: pip install -r requirements.txt
-    startCommand: uvicorn api_bridge:app --host 0.0.0.0 --port $PORT
+    buildCommand: "pip install -r requirements.txt"
+    startCommand: "uvicorn api_bridge:app --host 0.0.0.0 --port $PORT"
     envVars:
       - key: ACE_API_KEY
         sync: false
@@ -15,12 +15,12 @@ services:
   - type: web
     name: sap-research-agent-dashboard
     runtime: static
-    buildCommand: ""
+    buildCommand: "touch .noop"
     publishPath: dashboard
 
   - type: cron
     name: sap-hourly-research
     runtime: python
     schedule: "0 * * * *"
-    buildCommand: pip install -r requirements.txt
-    startCommand: python main.py
+    buildCommand: "pip install -r requirements.txt"
+    startCommand: "python main.py"
