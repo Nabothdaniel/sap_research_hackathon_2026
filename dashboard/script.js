@@ -14,49 +14,61 @@ const STATE_URL = API_BASE.includes('localhost') ? `${API_BASE}/state` : '/state
 const updateUI = (data) => {
     window.hasRealData = true;
 
-    // Update Scores
-    const scoreMiniEl = document.getElementById('autonomy-score-mini');
-    const score = data.reputation_score || 98.4;
-    if (scoreMiniEl) scoreMiniEl.textContent = score;
+    // 1. Update Segmented Gauge (713 -> segments)
+    const score = data.reputation_score || 713;
+    const scoreEl = document.getElementById('autonomy-score');
+    if (scoreEl) scoreEl.textContent = score;
 
-    // Update Earnings
-    const earningEl = document.getElementById('epoch-earning');
-    if (earningEl) earningEl.innerHTML = `${(data.total_earning || 850).toFixed(0)} <span>PTS</span>`;
+    const segments = document.querySelectorAll('.gauge-segment');
+    const activeCount = Math.floor((score / 1000) * segments.length);
+    segments.forEach((seg, i) => {
+        if (i < activeCount) seg.classList.add('active');
+        else seg.classList.remove('active');
+    });
 
-    const rewardEl = document.getElementById('today-reward');
-    if (rewardEl) rewardEl.innerHTML = `${(data.today_reward || 12).toFixed(1)} <span>PTS</span>`;
+    // 2. Update Balance & Earnings
+    const balancePill = document.querySelector('.action-pill span strong');
+    if (balancePill) balancePill.textContent = `${(data.total_earning * 1.5 || 2250).toFixed(0)} points`;
 
-    // Update Autonomous Volume
+    const epochEarning = document.getElementById('epoch-earning');
+    if (epochEarning) epochEarning.innerHTML = `${(data.total_earning || 350).toFixed(0)} <span style="font-size: 1rem; opacity: 0.5;">points</span>`;
+
+    const todayReward = document.getElementById('today-reward');
+    if (todayReward) todayReward.innerHTML = `${(data.today_reward || 50).toFixed(0)} <span style="font-size: 1rem; opacity: 0.5;">points</span>`;
+
+    // 3. Update Research Capacity (The Circle)
+    const vol = (data.total_earning || 850);
     const volText = document.getElementById('volume-text');
-    if (volText) {
-        const vol = (data.total_earning || 850);
-        volText.textContent = `${vol.toFixed(0)}/1000`;
+    if (volText) volText.textContent = `${vol.toFixed(0)}/1000 tx used`;
+
+    const progressCircle = document.querySelector('.progress-circle');
+    if (progressCircle) {
+        const percent = Math.min((vol / 1000) * 100, 100);
+        progressCircle.textContent = `${percent.toFixed(0)}%`;
+        progressCircle.style.borderTopColor = '#818cf8';
     }
 
-    // --- Live Research Feed Logic ---
+    // 4. Live Research Feed (The Engine's Soul)
     if (data.last_run && data.last_run.tasks) {
         const feed = document.getElementById('analysis-feed');
         if (feed) {
-            // Clear placeholder on first real data
             if (feed.querySelector('.placeholder')) feed.innerHTML = '';
             
-            // Add new tasks that aren't already in the feed
             data.last_run.tasks.forEach(task => {
                 const taskId = `task-${task.task_id.substring(0, 8)}`;
                 if (!document.getElementById(taskId)) {
                     const item = document.createElement('div');
                     item.id = taskId;
                     item.className = 'feed-item';
+                    item.style.marginBottom = '12px';
                     item.innerHTML = `
-                        <h4><i data-lucide="search"></i> ${task.topic}</h4>
-                        <p>${task.summary.substring(0, 150)}...</p>
-                        <div class="analysis-meta">
-                            <span class="tag-sentiment">Sentiment: ${task.sentiment}</span>
-                            <span>Task ID: ${task.task_id.substring(0, 8)}</span>
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px;">
+                            <strong style="color: #4f46e5; font-size: 0.85rem;">${task.topic}</strong>
+                            <span style="font-size: 0.7rem; color: #10b981; font-weight: 700;">Verified</span>
                         </div>
+                        <p style="font-size: 0.75rem; color: #64748b; line-height: 1.4;">${task.summary.substring(0, 120)}...</p>
                     `;
                     feed.prepend(item);
-                    if (window.lucide) lucide.createIcons();
                 }
             });
         }
