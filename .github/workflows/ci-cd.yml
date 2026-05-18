@@ -21,6 +21,9 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
           
+      - name: Debug File Structure
+        run: ls -R
+        
       - name: Run Pytest
         run: |
           export PYTHONPATH=$PYTHONPATH:.
