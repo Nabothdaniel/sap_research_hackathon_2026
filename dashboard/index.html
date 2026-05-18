@@ -14,168 +14,141 @@
     <div class="app-container">
         <!-- Sidebar Navigation -->
         <aside class="sidebar">
-            <div class="logo">
-                <i data-lucide="brain-circuit"></i>
-                <span>SAP Agent</span>
+                <div class="logo">
+                <i data-lucide="binary" style="width: 32px; height: 32px;"></i>
+                <span>SAP CORE</span>
             </div>
             
             <nav class="menu">
-                <p class="menu-label">AGENT CONTROL</p>
-                <a href="#" class="menu-item active"><i data-lucide="layout-dashboard"></i> Dashboard</a>
+                <a href="#" class="menu-item active"><i data-lucide="zap"></i> RUNTIME</a>
+                <a href="#" class="menu-item"><i data-lucide="database"></i> REGISTRY</a>
+                <a href="#" class="menu-item"><i data-lucide="shield-check"></i> SECURITY</a>
+                <a href="#" class="menu-item"><i data-lucide="settings"></i> CONFIG</a>
             </nav>
+            
+            <div class="sidebar-footer">
+                <div class="user-chip">
+                    <div class="avatar">JB</div>
+                    <div class="user-meta">
+                        <p>User v1.0</p>
+                        <span>Verified</span>
+                    </div>
+                </div>
+            </div>
         </aside>
 
         <!-- Main Content Area -->
         <main class="main-content">
             <header class="top-bar">
                 <div class="agent-title">
-                    <h1 style="font-weight: 700; font-size: 1.5rem;">SAP Autonomous Dashboard</h1>
-                    <p style="color: var(--text-muted); font-size: 0.85rem;">Verifying Autonomous Research on Solana</p>
+                    <h1 class="glitch-text">SAP AGENT CORE</h1>
+                    <div class="status-badge pulse">
+                        <span class="dot"></span> LIVE AUTONOMY
+                    </div>
                 </div>
 
-                <div class="network-badge">
-                    <a href="https://explorer.oobeprotocol.ai" target="_blank" class="pill" style="text-decoration: none; color: inherit;">
-                        <i data-lucide="globe"></i>
-                        <span>Mainnet Explorer</span>
-                    </a>
+                <div class="top-nav-pills">
+                    <div class="stat-pill">
+                        <i data-lucide="zap"></i>
+                        <span id="autonomy-score-mini">98.4</span>
+                    </div>
+                    <div class="stat-pill wallet-pill">
+                        <i data-lucide="wallet"></i>
+                        <span id="wallet-balance">2,250 </span>
+                    </div>
                 </div>
             </header>
 
-            <section class="dashboard-grid">
-                <!-- Node Status (Left Pa                <div class="card node-card">
-                    <div class="card-header">
-                        <button class="btn-back"><i data-lucide="arrow-left"></i> SAP Mainnet</button>
-                    </div>
-                    
-                    <div class="node-info">
-                        <div class="node-title">
-                            <h3>Agent Name:</h3>
-                            <h2>ResearchBot-v1 <i data-lucide="edit-3"></i></h2>
-                            <p class="node-id">ID: SAP-PROT-EX-..."</p>
-                        </div>
-                        <div class="status-indicator connected">
-                            <i data-lucide="activity"></i> Autonomous Mode
-                        </div>
-                        <span class="start-date">Last SAP Registration: May 17, 2026</span>
-                    </div>
-
-                    <div class="gauge-container">
-                        <div class="gauge">
+            <section class="bento-grid">
+                <!-- HERO CARD: Autonomy Gauge -->
+                <div class="card bento-hero">
+                    <div class="gauge-box">
+                        <div class="gauge-svg-container">
                             <svg viewBox="0 0 100 50">
-                                <path d="M 5 50 A 45 45 0 0 1 95 50" fill="none" stroke="#e2e8f0" stroke-width="8" stroke-dasharray="1 2" />
-                                <path id="gauge-progress" d="M 5 50 A 45 45 0 0 1 95 50" fill="none" stroke="url(#gradient)" stroke-width="8" stroke-dasharray="1 2" style="stroke-dashoffset: 20;" />
+                                <path class="gauge-bg" d="M 10 50 A 40 40 0 0 1 90 50" fill="none" stroke-width="6" />
+                                <path id="gauge-path" class="gauge-value" d="M 10 50 A 40 40 0 0 1 90 50" fill="none" stroke-width="6" />
                             </svg>
-                            <div class="gauge-text">
-                                <span id="autonomy-score" class="score">98.4</span>
-                                <span class="label">Autonomy Integrity</span>
+                            <div class="gauge-readout">
+                                <h1 id="autonomy-score">98.4</h1>
+                                <span>SCORE</span>
                             </div>
                         </div>
                     </div>
-
-                    <div class="improvements">
-                        <h4>Bounty Progress (Ace Data Category)</h4>
-                        <div class="suggestion-list">
-                            <div class="suggestion">
-                                <span>1. SAP Mainnet Reg</span>
-                                <button class="btn-stat green">COMPLETED</button>
-                            </div>
-                            <div class="suggestion">
-                                <span>2. Sentinel Services Used</span>
-                                <button class="btn-stat green">COMPLETED</button>
-                            </div>
-                            <div class="suggestion">
-                                <span>3. 3+ AceData APIs (x402)</span>
-                                <button class="btn-stat green">4 APIs ACTIVE</button>
-                            </div>
-                            <div class="suggestion">
-                                <span>4. Valid Synapse RPC Traffic</span>
-                                <button class="btn-stat green">VERIFIED</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-  </div>
-
-                <!-- Stats Panel (Right Area) -->
-                <div class="stats-column">
-                    <div class="stats-row">
-                        <div class="card mini-card earning">
-                            <span class="label">Epoch 1 Earning</span>
-                            <span id="epoch-earning" class="value">350 <span>points</span></span>
-                        </div>
-                        <div class="card mini-card reward">
-                            <span class="label">Today Reward</span>
-                            <span id="today-reward" class="value">50 <span>points</span></span>
-                        </div>
-                    </div>
-
-                    <div class="card network-card">
-                        <h3>Infrastructure Status</h3>
-                        <div class="network-details">
-                            <div class="detail-item">
-                                <span>SAP Mainnet Status:</span>
-                                <strong class="green">✓ ONLINE</strong>
-                            </div>
-                            <div class="detail-item">
-                                <span>Synapse RPC URL:</span>
-                                <strong>api.mainnet...</strong>
-                            </div>
-                            <div class="detail-item">
-                                <span>AceData x402 Facilitator:</span>
-                                <strong class="green">✓ ACTIVE</strong>
-                            </div>
-                        </div>
+                    <div class="hero-footer">
+                        <h3>ResearchBot-v1</h3>
+                        <p id="agent-id-full">SAP-PROT-EX-992-BETA-01</p>
                     </div>
                 </div>
 
-                <!-- Uptime & Device Status Panel -->
-                <div class="status-column">
-                    <div class="card monitor-card">
-                        <div class="card-header">
-                            <h3>Throughput Monitor</h3>
-                            <select class="custom-select">
-                                <option>Total AI Calls</option>
-                            </select>
+                <!-- STATS BENTO: Earnings -->
+                <div class="card bento-stat earnings">
+                    <div class="stat-header">
+                        <i data-lucide="trending-up"></i>
+                        <span>TOTAL EARNINGS</span>
+                    </div>
+                    <h2 id="epoch-earning">350 <span>PTS</span></h2>
+                    <div class="mini-graph">
+                        <!-- Simulated SVG line -->
+                        <svg viewBox="0 0 100 20" preserveAspectRatio="none">
+                            <path d="M0,20 Q25,5 50,15 T100,5" fill="none" stroke="var(--primary)" stroke-width="2" />
+                        </svg>
+                    </div>
+                </div>
+
+                <div class="card bento-stat rewards">
+                    <div class="stat-header">
+                        <i data-lucide="award"></i>
+                        <span>TODAY'S REWARD</span>
+                    </div>
+                    <h2 id="today-reward">50 <span>PTS</span></h2>
+                    <div class="reward-progress">
+                        <div class="bar"></div>
+                    </div>
+                </div>
+
+                <!-- SYSTEM MONITOR BENTO -->
+                <div class="card bento-monitor">
+                    <h3>SYSTEM THROUGHPUT</h3>
+                    <div class="throughput-chart">
+                        <div class="bar-wrap"><div class="bar" style="height: 60%"></div></div>
+                        <div class="bar-wrap"><div class="bar" style="height: 80%"></div></div>
+                        <div class="bar-wrap"><div class="bar" style="height: 40%"></div></div>
+                        <div class="bar-wrap"><div class="bar" style="height: 90%"></div></div>
+                        <div class="bar-wrap"><div class="bar" style="height: 70%"></div></div>
+                        <div class="bar-wrap"><div class="bar" style="height: 50%"></div></div>
+                    </div>
+                </div>
+
+                <!-- INFRASTRUCTURE CARD -->
+                <div class="card bento-infra">
+                    <h3>INFRASTRUCTURE</h3>
+                    <div class="infra-list">
+                        <div class="infra-item">
+                            <span>SAP MAINNET</span>
+                            <span class="tag online">✓ ONLINE</span>
                         </div>
-                        <div class="chart-container">
-                            <div class="bar-chart">
-                                <div class="bar" style="height: 40%;"></div>
-                                <div class="bar" style="height: 60%;"></div>
-                                <div class="bar" style="height: 30%;"></div>
-                                <div class="bar" style="height: 50%;"></div>
-                                <div class="bar" style="height: 80%;"></div>
-                                <div class="bar" style="height: 40%;"></div>
-                                <div class="bar" style="height: 60%;"></div>
-                            </div>
+                        <div class="infra-item">
+                            <span>X402 PROTOCOL</span>
+                            <span class="tag active">✓ ACTIVE</span>
                         </div>
                     </div>
+                    <div class="progress-container">
+                        <p>AUTONOMOUS VOLUME</p>
+                        <div class="progress-bar">
+                            <div id="volume-fill" class="fill" style="width: 85%"></div>
+                        </div>
+                        <span id="volume-text">850/1000 TX</span>
+                    </div>
+                </div>
 
-                    <div class="card device-card">
-                        <h3>Agent Execution Status</h3>
-                        <div class="circle-stats">
-                            <div class="circle-progress">
-                                <svg viewBox="0 0 36 36">
-                                    <path d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="#e0e7ff" stroke-width="3" />
-                                    <path d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="#818cf8" stroke-width="3" stroke-dasharray="100, 100" />
-                                </svg>
-                                <div class="percent">100%<br><span>Success Rate</span></div>
-                            </div>
-                            <div class="circle-progress">
-                                <svg viewBox="0 0 36 36">
-                                    <path d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="#e0e7ff" stroke-width="3" />
-                                    <path d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="#818cf8" stroke-width="3" stroke-dasharray="45, 100" />
-                                </svg>
-                                <div class="percent">45%<br><span>Tool Load</span></div>
-                            </div>
-                        </div>
-                        <div class="hardware-specs">
-                            <p>RPC: Synapse Mainnet</p>
-                            <p>Sentinel ID: Ccr2yK3h...ph</p>
-                            <div class="storage-bar">
-                                <div class="filled" style="width: 85%;"></div>
-                            </div>
-                            <p class="storage-text">Autonomous Volume: <span>850/1000 tx</span></p>
-                        </div>
+                <!-- BOUNTY PROGRESS BENTO -->
+                <div class="card bento-bounty">
+                    <h3>BOUNTY STATUS</h3>
+                    <div class="checklist">
+                        <div class="check-item done"><i data-lucide="check-circle"></i> SAP Mainnet</div>
+                        <div class="check-item done"><i data-lucide="check-circle"></i> Sentinel Used</div>
+                        <div class="check-item done"><i data-lucide="check-circle"></i> AceData Active</div>
+                        <div class="check-item"><i data-lucide="clock"></i> Continuous Run</div>
                     </div>
                 </div>
             </section>
