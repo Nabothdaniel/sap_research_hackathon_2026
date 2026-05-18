@@ -41,114 +41,55 @@
         <main class="main-content">
             <header class="top-bar">
                 <div class="agent-title">
-                    <h1 class="glitch-text">SAP AGENT CORE</h1>
-                    <div class="status-badge pulse">
-                        <span class="dot"></span> LIVE AUTONOMY
-                    </div>
+                    <h1>SAP Research Terminal</h1>
+                    <p>Verified Autonomous Activity on Solana</p>
                 </div>
-
-                <div class="top-nav-pills">
-                    <div class="stat-pill">
+                <div class="top-meta">
+                    <div class="pill score-pill">
                         <i data-lucide="zap"></i>
-                        <span id="autonomy-score-mini">98.4</span>
-                    </div>
-                    <div class="stat-pill wallet-pill">
-                        <i data-lucide="wallet"></i>
-                        <span id="wallet-balance">2,250 </span>
+                        <span id="autonomy-score-mini">98.4</span> Autonomy
                     </div>
                 </div>
             </header>
 
-            <section class="bento-grid">
-                <!-- HERO CARD: Autonomy Gauge -->
-                <div class="card bento-hero">
-                    <div class="gauge-box">
-                        <div class="gauge-svg-container">
-                            <svg viewBox="0 0 100 50">
-                                <path class="gauge-bg" d="M 10 50 A 40 40 0 0 1 90 50" fill="none" stroke-width="6" />
-                                <path id="gauge-path" class="gauge-value" d="M 10 50 A 40 40 0 0 1 90 50" fill="none" stroke-width="6" />
-                            </svg>
-                            <div class="gauge-readout">
-                                <h1 id="autonomy-score">98.4</h1>
-                                <span>SCORE</span>
-                            </div>
+            <section class="research-grid">
+                <!-- Overview Stats -->
+                <div class="stats-row">
+                    <div class="card stat-card">
+                        <span class="label">Total Earning</span>
+                        <h2 id="epoch-earning">350 <span>PTS</span></h2>
+                    </div>
+                    <div class="card stat-card">
+                        <span class="label">Today Reward</span>
+                        <h2 id="today-reward">50 <span>PTS</span></h2>
+                    </div>
+                    <div class="card stat-card">
+                        <span class="label">Autonomous Volume</span>
+                        <h2 id="volume-text">850/1000</h2>
+                    </div>
+                </div>
+
+                <!-- Analysis Feed (Main Component) -->
+                <div class="card analysis-card">
+                    <div class="card-header">
+                        <h3><i data-lucide="microscope"></i> Live Research Analysis</h3>
+                        <span class="badge online">LIVE FEED</span>
+                    </div>
+                    <div id="analysis-feed" class="feed-container">
+                        <div class="feed-item placeholder">
+                            <i data-lucide="loader-2" class="spin"></i>
+                            <p>Connecting to Synapse RPC for live research telemetry...</p>
                         </div>
                     </div>
-                    <div class="hero-footer">
-                        <h3>ResearchBot-v1</h3>
-                        <p id="agent-id-full">SAP-PROT-EX-992-BETA-01</p>
-                    </div>
                 </div>
 
-                <!-- STATS BENTO: Earnings -->
-                <div class="card bento-stat earnings">
-                    <div class="stat-header">
-                        <i data-lucide="trending-up"></i>
-                        <span>TOTAL EARNINGS</span>
-                    </div>
-                    <h2 id="epoch-earning">350 <span>PTS</span></h2>
-                    <div class="mini-graph">
-                        <!-- Simulated SVG line -->
-                        <svg viewBox="0 0 100 20" preserveAspectRatio="none">
-                            <path d="M0,20 Q25,5 50,15 T100,5" fill="none" stroke="var(--primary)" stroke-width="2" />
-                        </svg>
-                    </div>
-                </div>
-
-                <div class="card bento-stat rewards">
-                    <div class="stat-header">
-                        <i data-lucide="award"></i>
-                        <span>TODAY'S REWARD</span>
-                    </div>
-                    <h2 id="today-reward">50 <span>PTS</span></h2>
-                    <div class="reward-progress">
-                        <div class="bar"></div>
-                    </div>
-                </div>
-
-                <!-- SYSTEM MONITOR BENTO -->
-                <div class="card bento-monitor">
-                    <h3>SYSTEM THROUGHPUT</h3>
-                    <div class="throughput-chart">
-                        <div class="bar-wrap"><div class="bar" style="height: 60%"></div></div>
-                        <div class="bar-wrap"><div class="bar" style="height: 80%"></div></div>
-                        <div class="bar-wrap"><div class="bar" style="height: 40%"></div></div>
-                        <div class="bar-wrap"><div class="bar" style="height: 90%"></div></div>
-                        <div class="bar-wrap"><div class="bar" style="height: 70%"></div></div>
-                        <div class="bar-wrap"><div class="bar" style="height: 50%"></div></div>
-                    </div>
-                </div>
-
-                <!-- INFRASTRUCTURE CARD -->
-                <div class="card bento-infra">
-                    <h3>INFRASTRUCTURE</h3>
-                    <div class="infra-list">
-                        <div class="infra-item">
-                            <span>SAP MAINNET</span>
-                            <span class="tag online">✓ ONLINE</span>
-                        </div>
-                        <div class="infra-item">
-                            <span>X402 PROTOCOL</span>
-                            <span class="tag active">✓ ACTIVE</span>
-                        </div>
-                    </div>
-                    <div class="progress-container">
-                        <p>AUTONOMOUS VOLUME</p>
-                        <div class="progress-bar">
-                            <div id="volume-fill" class="fill" style="width: 85%"></div>
-                        </div>
-                        <span id="volume-text">850/1000 TX</span>
-                    </div>
-                </div>
-
-                <!-- BOUNTY PROGRESS BENTO -->
-                <div class="card bento-bounty">
-                    <h3>BOUNTY STATUS</h3>
+                <!-- Infrastructure/Bounty Section -->
+                <div class="card infra-card">
+                    <h3>Infrastructure Status</h3>
                     <div class="checklist">
-                        <div class="check-item done"><i data-lucide="check-circle"></i> SAP Mainnet</div>
-                        <div class="check-item done"><i data-lucide="check-circle"></i> Sentinel Used</div>
-                        <div class="check-item done"><i data-lucide="check-circle"></i> AceData Active</div>
-                        <div class="check-item"><i data-lucide="clock"></i> Continuous Run</div>
+                        <div class="check-item done"><i data-lucide="check-circle"></i> SAP Mainnet Registered</div>
+                        <div class="check-item done"><i data-lucide="check-circle"></i> AceData 4 APIs Active</div>
+                        <div class="check-item done"><i data-lucide="check-circle"></i> x402 Facilitator Online</div>
                     </div>
                 </div>
             </section>
