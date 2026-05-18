@@ -21,22 +21,13 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# Serve the dashboard folder at the root
-app.mount("/dashboard", StaticFiles(directory="dashboard"), name="dashboard")
-
-@app.get("/")
-async def root():
-    """Redirect root to the dashboard."""
-    from fastapi.responses import RedirectResponse
-    return RedirectResponse(url="/dashboard/index.html")
-
 # --- Autonomous Activation ---
 
-@app.post("/trigger-run")
+@app.api_route("/trigger-run", methods=["GET", "POST"])
 async def trigger_run(background_tasks: BackgroundTasks):
     """
-    Endpoint for external cron services (like cron-job.org) to trigger 
-    the autonomous research loop.
+    Endpoint for external cron services to trigger the autonomous research loop.
+    Supports both GET (for manual testing) and POST (for automated services).
     """
     async def run_agent():
         orchestrator = ResearchAgentOrchestrator()
@@ -44,6 +35,16 @@ async def trigger_run(background_tasks: BackgroundTasks):
     
     background_tasks.add_task(run_agent)
     return {"status": "Research run triggered in background"}
+
+@app.get("/")
+async def root():
+    """Redirect root to the dashboard."""
+    from fastapi.responses import RedirectResponse
+    return RedirectResponse(url="/dashboard/index.html")
+
+# Serve the dashboard folder at the root
+# IMPORTANT: Routes should generally be defined before mounting static files
+app.mount("/dashboard", StaticFiles(directory="dashboard"), name="dashboard")
 
 # --- State Model ---
 
