@@ -1,7 +1,7 @@
 services:
   - type: web
     name: sap-research-agent-api
-    env: python
+    runtime: python
     buildCommand: pip install -r requirements.txt
     startCommand: uvicorn api_bridge:app --host 0.0.0.0 --port $PORT
     envVars:
@@ -14,13 +14,13 @@ services:
 
   - type: web
     name: sap-research-agent-dashboard
-    env: static
+    runtime: static
     buildCommand: ""
     publishPath: dashboard
 
   - type: cron
     name: sap-hourly-research
-    env: python
+    runtime: python
     schedule: "0 * * * *"
     buildCommand: pip install -r requirements.txt
     startCommand: python main.py
