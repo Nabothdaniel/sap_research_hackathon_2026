@@ -14,85 +14,164 @@
     <div class="app-container">
         <!-- Sidebar Navigation -->
         <aside class="sidebar">
-                <div class="logo">
-                <i data-lucide="binary" style="width: 32px; height: 32px;"></i>
-                <span>SAP CORE</span>
+            <div class="logo">
+                <i data-lucide="binary" style="width: 32px; height: 32px; color: var(--primary);"></i>
+                <span>OpenEdge</span>
             </div>
             
             <nav class="menu">
-                <a href="#" class="menu-item active"><i data-lucide="zap"></i> RUNTIME</a>
-                <a href="#" class="menu-item"><i data-lucide="database"></i> REGISTRY</a>
-                <a href="#" class="menu-item"><i data-lucide="shield-check"></i> SECURITY</a>
-                <a href="#" class="menu-item"><i data-lucide="settings"></i> CONFIG</a>
+                <p class="menu-label">MENU</p>
+                <a href="#" class="menu-item active"><i data-lucide="layout-dashboard"></i> Dashboard</a>
+                <a href="#" class="menu-item"><i data-lucide="cpu"></i> Node Management</a>
+                <a href="#" class="menu-item"><i data-lucide="gift"></i> Reward</a>
+                <a href="#" class="menu-item"><i data-lucide="users"></i> Referral</a>
+                <a href="#" class="menu-item"><i data-lucide="settings"></i> Setting</a>
             </nav>
-            
-            <div class="sidebar-footer">
-                <div class="user-chip">
-                    <div class="avatar">JB</div>
-                    <div class="user-meta">
-                        <p>User v1.0</p>
-                        <span>Verified</span>
-                    </div>
+
+            <div class="sidebar-social" style="margin-top: auto; padding-top: 20px; border-top: 1px solid #f1f5f9;">
+                <p class="menu-label">SOCIAL MEDIA</p>
+                <a href="#" class="menu-item"><i data-lucide="twitter"></i> Twitter</a>
+                <a href="#" class="menu-item"><i data-lucide="message-square"></i> Discord</a>
+                <div class="theme-toggle" style="margin-top: 20px; display: flex; justify-content: space-between; align-items: center;">
+                    <span>Theme</span>
+                    <i data-lucide="moon"></i>
                 </div>
             </div>
         </aside>
 
         <!-- Main Content Area -->
-        <main class="main-content">
-            <header class="top-bar">
-                <div class="agent-title">
-                    <h1>SAP Research Terminal</h1>
-                    <p>Verified Autonomous Activity on Solana</p>
+        <main class="main-content" style="flex: 1;">
+            <!-- Top Action Pills -->
+            <header class="header-actions">
+                <div class="action-pill">
+                    <i data-lucide="user-plus" style="color: #22c55e;"></i>
+                    <span>Referral: <strong>10</strong></span>
                 </div>
-                <div class="top-meta">
-                    <div class="pill score-pill">
-                        <i data-lucide="zap"></i>
-                        <span id="autonomy-score-mini">98.4</span> Autonomy
-                    </div>
+                <button class="btn-dark">Copy referral code</button>
+                <div class="action-pill">
+                    <i data-lucide="trophy" style="color: #f59e0b;"></i>
+                    <span>Achievements</span>
                 </div>
+                <div class="action-pill" style="margin-left: auto;">
+                    <i data-lucide="database" style="color: #06b6d4;"></i>
+                    <span>Balance: <strong>2,250 points</strong></span>
+                </div>
+                <div class="avatar" style="width: 36px; height: 36px; background: #e0e7ff; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700;">JB</div>
             </header>
 
-            <section class="research-grid">
-                <!-- Overview Stats -->
-                <div class="stats-row">
-                    <div class="card stat-card">
-                        <span class="label">Total Earning</span>
-                        <h2 id="epoch-earning">350 <span>PTS</span></h2>
+            <!-- Grid Layout -->
+            <div class="main-layout">
+                <!-- Left: Node Card -->
+                <div class="card node-card">
+                    <div class="card-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                        <button style="background: #111827; color: white; border: none; border-radius: 50%; width: 32px; height: 32px;"><i data-lucide="arrow-left" style="width: 16px;"></i></button>
+                        <span style="font-size: 0.8rem; font-weight: 700; color: #6b7280;">Back</span>
                     </div>
-                    <div class="card stat-card">
-                        <span class="label">Today Reward</span>
-                        <h2 id="today-reward">50 <span>PTS</span></h2>
-                    </div>
-                    <div class="card stat-card">
-                        <span class="label">Autonomous Volume</span>
-                        <h2 id="volume-text">850/1000</h2>
-                    </div>
-                </div>
 
-                <!-- Analysis Feed (Main Component) -->
-                <div class="card analysis-card">
-                    <div class="card-header">
-                        <h3><i data-lucide="microscope"></i> Live Research Analysis</h3>
-                        <span class="badge online">LIVE FEED</span>
+                    <div class="node-meta" style="margin-bottom: 24px;">
+                        <p style="font-size: 0.75rem; color: #94a3b8;">Device Name:</p>
+                        <h2 style="font-size: 1.25rem;">Worker Node 001 <i data-lucide="edit-3" style="width: 14px;"></i></h2>
+                        <p id="agent-id-full" style="font-size: 0.75rem; color: #cbd5e1; margin-top: 4px;">ID: SAP-PROT-EX-992-BETA-01</p>
+                        <div style="float: right; margin-top: -40px; display: flex; align-items: center; gap: 4px; color: #22c55e; font-weight: 700; font-size: 0.8rem;">
+                            <i data-lucide="check-circle" style="width: 16px;"></i> Connected
+                        </div>
                     </div>
-                    <div id="analysis-feed" class="feed-container">
-                        <div class="feed-item placeholder">
-                            <i data-lucide="loader-2" class="spin"></i>
-                            <p>Connecting to Synapse RPC for live research telemetry...</p>
+
+                    <div class="segmented-gauge">
+                        <div class="gauge-segment active"></div>
+                        <div class="gauge-segment active"></div>
+                        <div class="gauge-segment active"></div>
+                        <div class="gauge-segment active"></div>
+                        <div class="gauge-segment active"></div>
+                        <div class="gauge-segment active"></div>
+                        <div class="gauge-segment active"></div>
+                        <div class="gauge-segment"></div>
+                        <div class="gauge-segment"></div>
+                        <div class="gauge-segment"></div>
+                    </div>
+                    <div class="score-display">
+                        <h1 id="autonomy-score">713</h1>
+                        <p>Reputation Score</p>
+                    </div>
+
+                    <div class="improvements" style="margin-top: 32px; border-top: 1px solid #f1f5f9; padding-top: 24px;">
+                        <h4 style="font-size: 0.85rem; margin-bottom: 16px;">Bounty Suggestions</h4>
+                        <div class="check-list">
+                            <div style="display: flex; justify-content: space-between; align-items: center; background: #f8fafc; padding: 10px 16px; border-radius: 12px; margin-bottom: 8px;">
+                                <span style="font-size: 0.8rem;">1. AceData Connectivity</span>
+                                <button style="background: #e0e7ff; color: #4338ca; border: none; padding: 4px 12px; border-radius: 6px; font-size: 0.75rem; font-weight: 700;">OPTIMIZE</button>
+                            </div>
+                            <div style="display: flex; justify-content: space-between; align-items: center; background: #f8fafc; padding: 10px 16px; border-radius: 12px;">
+                                <span style="font-size: 0.8rem;">2. x402 Settle Proofs</span>
+                                <button style="background: #e0e7ff; color: #4338ca; border: none; padding: 4px 12px; border-radius: 6px; font-size: 0.75rem; font-weight: 700;">OPTIMIZE</button>
+                            </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- Infrastructure/Bounty Section -->
-                <div class="card infra-card">
-                    <h3>Infrastructure Status</h3>
-                    <div class="checklist">
-                        <div class="check-item done"><i data-lucide="check-circle"></i> SAP Mainnet Registered</div>
-                        <div class="check-item done"><i data-lucide="check-circle"></i> AceData 4 APIs Active</div>
-                        <div class="check-item done"><i data-lucide="check-circle"></i> x402 Facilitator Online</div>
+                <!-- Mid: Stats -->
+                <div class="stat-grid">
+                    <div class="card bg-lime" style="border: none;">
+                        <p style="font-size: 0.8rem; font-weight: 600;">Epoch 1 Earning</p>
+                        <h1 id="epoch-earning" style="font-size: 2.5rem; margin-top: 12px;">350 <span style="font-size: 1rem; opacity: 0.5;">points</span></h1>
+                    </div>
+                    <div class="card bg-purple" style="border: none;">
+                        <p style="font-size: 0.8rem; font-weight: 600;">Today Reward</p>
+                        <h1 id="today-reward" style="font-size: 2.5rem; margin-top: 12px;">50 <span style="font-size: 1rem; opacity: 0.5;">points</span></h1>
+                    </div>
+                    <div class="card">
+                        <h4 style="font-size: 0.85rem; margin-bottom: 16px;">Network Status</h4>
+                        <div class="infra-details">
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 12px; font-size: 0.8rem;">
+                                <span style="color: #94a3b8;">Status:</span>
+                                <strong style="color: #22c55e;">✓ ONLINE</strong>
+                            </div>
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 12px; font-size: 0.8rem;">
+                                <span style="color: #94a3b8;">Sentinel:</span>
+                                <strong>ACTIVE</strong>
+                            </div>
+                            <div style="display: flex; justify-content: space-between; font-size: 0.8rem;">
+                                <span style="color: #94a3b8;">x402:</span>
+                                <strong>SMC-v2</strong>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </section>
+
+                <!-- Right: Analysis/Task Live -->
+                <div class="stat-grid">
+                    <div class="card">
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
+                            <h4 style="font-size: 0.85rem;">Live Throughput</h4>
+                            <span style="font-size: 0.75rem; color: #94a3b8;">Monthly <i data-lucide="chevron-down"></i></span>
+                        </div>
+                        <div class="bar-chart" style="display: flex; align-items: flex-end; gap: 6px; height: 100px;">
+                            <div class="bar" style="height: 40%; width: 10px; background: #e0e7ff; border-radius: 4px;"></div>
+                            <div class="bar" style="height: 60%; width: 10px; background: #e0e7ff; border-radius: 4px;"></div>
+                            <div class="bar" style="height: 80%; width: 10px; background: #818cf8; border-radius: 4px;"></div>
+                            <div class="bar" style="height: 50%; width: 10px; background: #e0e7ff; border-radius: 4px;"></div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <h4 style="font-size: 0.85rem; margin-bottom: 16px;">Research Capacity</h4>
+                        <div class="storage-info" style="text-align: center;">
+                            <div class="progress-circle" style="width: 80px; height: 80px; margin: 0 auto; border: 8px solid #f1f5f9; border-top-color: #818cf8; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700;">85%</div>
+                            <p id="volume-text" style="font-size: 0.75rem; color: #94a3b8; margin-top: 12px;">850/1000 tx used</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Floating Analysis Terminal -->
+            <div class="card analysis-terminal" style="margin-top: 24px;">
+                <div class="card-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
+                    <h3 style="font-size: 0.9rem;"><i data-lucide="microscope" style="width: 16px;"></i> Autonomous Research Registry</h3>
+                    <span class="badge online">LIVE SESSION</span>
+                </div>
+                <div id="analysis-feed" class="feed-container" style="height: 200px; overflow-y: auto;">
+                    <div class="feed-item placeholder"><p>Syncing live research telemetry from Ace Data Cloud...</p></div>
+                </div>
+            </div>
         </main>
     </div>
     <script src="script.js"></script>
