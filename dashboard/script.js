@@ -122,6 +122,28 @@ document.addEventListener('DOMContentLoaded', () => {
         window.requestAnimationFrame(step);
     }
 
+    /**
+     * UI Interactions
+     */
+    window.copyApiHook = () => {
+        const url = window.location.origin + '/trigger-run';
+        navigator.clipboard.writeText(url).then(() => {
+            showToast('API Hook Copied to Clipboard!');
+        });
+    };
+
+    function showToast(msg) {
+        const toast = document.createElement('div');
+        toast.className = 'toast-msg';
+        toast.innerText = msg;
+        document.body.appendChild(toast);
+        setTimeout(() => toast.classList.add('show'), 100);
+        setTimeout(() => {
+            toast.classList.remove('show');
+            setTimeout(() => toast.remove(), 300);
+        }, 3000);
+    }
+
     // Init
     updateDashboard();
     setInterval(updateDashboard, 5000);
