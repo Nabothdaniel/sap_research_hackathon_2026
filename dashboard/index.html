@@ -66,7 +66,7 @@
                                 <path id="gauge-progress" d="M 5 50 A 45 45 0 0 1 95 50" fill="none" stroke="url(#gradient)" stroke-width="8" stroke-dasharray="1 2" style="stroke-dashoffset: 20;" />
                             </svg>
                             <div class="gauge-text">
-                                <span class="score">98.4</span>
+                                <span id="autonomy-score" class="score">98.4</span>
                                 <span class="label">Autonomy Integrity</span>
                             </div>
                         </div>
@@ -101,11 +101,11 @@
                     <div class="stats-row">
                         <div class="card mini-card earning">
                             <span class="label">Epoch 1 Earning</span>
-                            <span class="value">350 <span>points</span></span>
+                            <span id="epoch-earning" class="value">350 <span>points</span></span>
                         </div>
                         <div class="card mini-card reward">
                             <span class="label">Today Reward</span>
-                            <span class="value">50 <span>points</span></span>
+                            <span id="today-reward" class="value">50 <span>points</span></span>
                         </div>
                     </div>
 
@@ -181,6 +181,7 @@
             </section>
         </main>
     </div>
+    <script src="script.js"></script>
     <script>
         lucide.createIcons();
     </script>

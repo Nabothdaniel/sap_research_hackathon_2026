@@ -15,14 +15,14 @@ const updateUI = (data) => {
     window.hasRealData = true; // Stop simulation on real data
 
     // Update Score
-    const scoreEl = document.querySelector('.score');
+    const scoreEl = document.getElementById('autonomy-score');
     if (scoreEl) scoreEl.textContent = data.reputation_score || 98.4;
 
     // Update Earnings (Total Payload)
-    const earningEl = document.querySelector('.earning .value');
+    const earningEl = document.getElementById('epoch-earning');
     if (earningEl) earningEl.innerHTML = `${(data.total_earning || 850).toFixed(0)} <span>points</span>`;
 
-    const rewardEl = document.querySelector('.reward .value');
+    const rewardEl = document.getElementById('today-reward');
     if (rewardEl) rewardEl.innerHTML = `${(data.today_reward || 12).toFixed(1)} <span>points</span>`;
 
     // Update Agent ID and Status
@@ -65,7 +65,7 @@ const simulateActivity = () => {
     });
 
     // Pulse the score slightly
-    const scoreEl = document.querySelector('.score');
+    const scoreEl = document.getElementById('autonomy-score');
     if (scoreEl && !window.hasRealData) {
         const drift = (Math.random() * 0.1) - 0.05;
         const currentScore = parseFloat(scoreEl.textContent);
