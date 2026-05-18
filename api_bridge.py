@@ -57,15 +57,18 @@ app.mount("/dashboard", StaticFiles(directory="dashboard"), name="dashboard")
 # --- State Model ---
 
 class AgentState(BaseModel):
-    agent_id: str = "research-bot-dev"
+    agent_id: str = "SAP-NODE-EX-992"
     reputation_score: int = 713
     total_earning: float = 350.0
     today_reward: float = 50.0
-    ip_address: str = "127.0.0.1"
-    connected: bool = True
+    balance: float = 2250.0
+    rank: str = "Alpha"
+    referrals: int = 12
     cpu_load: int = 75
     storage_used: int = 600
     storage_total: int = 800
+    volume_history: List[int] = [40, 60, 85, 50, 90, 30, 45]
+    connected: bool = True
 
 # --- State Persistence ---
 
