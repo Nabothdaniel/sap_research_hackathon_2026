@@ -94,15 +94,28 @@ async def get_logs(limit: int = 10):
 
 @app.on_event("startup")
 async def startup_event():
-    """Automatically start a research run when the server starts."""
-    async def initial_run():
-        topic_engine = TopicEngine()
-        topics = await topic_engine.build_run_topics()
+    """Automatically start a continuous research loop when the server starts."""
+    async def continuous_research_loop():
         orchestrator = ResearchAgentOrchestrator()
-        await orchestrator.run_all_topics(topics=topics, trigger_reason="server_startup")
+        topic_engine = TopicEngine()
+        
+        while True:
+            try:
+                # 1. Fetch fresh trending topics
+                topics = await topic_engine.build_run_topics()
+                
+                # 2. Run the full orchestrator pipeline (Register -> Discover -> Execute -> Pay -> Report)
+                await orchestrator.run_all_topics(topics=topics, trigger_reason="autonomous_background_loop")
+                
+                # 3. Wait for 30 minutes before the next autonomous cycle
+                # This keeps the agent "alive" and generates steady, legitimate volume
+                await asyncio.sleep(1800) 
+            except Exception as e:
+                print(f"Error in background research loop: {e}")
+                await asyncio.sleep(60) # Wait a minute before retrying on error
 
-    # Run in background so the server doesn't block startup
-    asyncio.create_task(initial_run())
+    # Start the "forever loop" in the background
+    asyncio.create_task(continuous_research_loop())
 
 if __name__ == "__main__":
     import uvicorn
