@@ -68,6 +68,12 @@ class AgentState(BaseModel):
     storage_used: int = 600
     storage_total: int = 800
     volume_history: List[int] = [40, 60, 85, 50, 90, 30, 45]
+    volume_transactions: List[dict] = [
+        {"topic": "Solana MEV Trends", "bounty": 15.5, "status": "SETTLED", "time": "2m ago"},
+        {"topic": "DePIN Network Growth", "bounty": 12.0, "status": "SETTLED", "time": "14m ago"},
+        {"topic": "ETH L2 Scalability", "bounty": 22.4, "status": "SETTLED", "time": "28m ago"},
+        {"topic": "AI Agent Protocols", "bounty": 18.2, "status": "PROCESSING", "time": "Just now"}
+    ]
     connected: bool = True
 
 # --- State Persistence ---
