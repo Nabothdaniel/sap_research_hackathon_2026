@@ -3,195 +3,91 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SAP Research Agent | Autonomous Control Center</title>
-    <link rel="stylesheet" href="style.css">
+    <title>SAP Research Agent | Dashboard</title>
+    <base href="/dashboard/">
+    <link rel="stylesheet" href="style.css?v=3.0">
     <script src="https://unpkg.com/lucide@latest"></script>
 </head>
 <body>
-    <!-- Sidebar -->
-    <aside class="sidebar">
-        <div class="logo-container">
-            <div class="logo-icon">
-                <i data-lucide="brain" style="color: white; width: 18px;"></i>
+    <div class="app-container">
+        <!-- Header -->
+        <header>
+            <div class="logo-info">
+                <span class="label">Autonomous Node</span>
+                <h1>SAP RESEARCH ENGINE</h1>
             </div>
-            <span class="logo-text">SAP Engine</span>
-        </div>
-
-        <nav class="nav-menu">
-            <span class="nav-label">Main Menu</span>
-            <a href="#" class="nav-item active">
-                <i data-lucide="layout-dashboard" style="width: 18px;"></i> Dashboard
-            </a>
-            <a href="#" class="nav-item">
-                <i data-lucide="cpu" style="width: 18px;"></i> Research Nodes
-            </a>
-            <a href="#" class="nav-item">
-                <i data-lucide="gem" style="width: 18px;"></i> Bounty Logs
-            </a>
-            <a href="#" class="nav-item">
-                <i data-lucide="users" style="width: 18px;"></i> Protocol Refs
-            </a>
-            <a href="#" class="nav-item">
-                <i data-lucide="settings" style="width: 18px;"></i> Engine Settings
-            </a>
-        </nav>
-
-        <div class="sidebar-footer">
-            <span class="nav-label">Protocol Links</span>
-            <a href="#" class="nav-item"><i data-lucide="twitter" style="width: 16px;"></i> Twitter (X)</a>
-            <a href="#" class="nav-item"><i data-lucide="message-square" style="width: 16px;"></i> Discord</a>
-        </div>
-    </aside>
-
-    <main class="main-wrapper">
-        <!-- Top Toolbar -->
-        <div class="top-bar">
-            <div class="pill">
-                <i data-lucide="user-plus" style="width: 16px; color: var(--success);"></i>
-                Referrals: <strong id="referral-val">12</strong>
+            <div class="header-actions" style="display: flex; gap: 16px; align-items: center;">
+                <button class="btn-action" onclick="copyApiHook()">Copy API Hook</button>
+                <div class="status-badge">
+                    <div class="status-dot"></div>
+                    NODE ACTIVE
+                </div>
             </div>
-            <button class="btn-dark" onclick="copyApiHook()">Copy API Hook</button>
-            <div class="pill">
-                <i data-lucide="medal" style="width: 16px; color: var(--primary);"></i>
-                Rank: <strong id="rank-val">Alpha</strong>
-            </div>
-            <div class="pill" style="background: #f8fafc;">
-                <i data-lucide="wallet" style="width: 16px; color: #f59e0b;"></i>
-                Balance: <strong id="balance-val">2,250 PTS</strong>
-            </div>
-        </div>
+        </header>
 
-        <!-- Dashboard Layout -->
         <div class="dashboard-grid">
-            
-            <!-- Engine Main: Reputation & Suggestions -->
-            <div class="card engine-card">
-                <div class="card-header">
+            <!-- Main Performance Chart -->
+            <div class="card main-stat-card">
+                <span class="label">Autonomous Research Volume</span>
+                <h2 style="font-size: 1.2rem; margin-bottom: 8px;">Operational Intensity</h2>
+                <p style="color: var(--text-muted); font-size: 0.85rem; max-width: 400px;">
+                    实时 Monitoring research depth and discovery bandwidth across high-density intelligence markets.
+                </p>
+                <div class="bar-chart" id="volume-chart">
+                    <!-- Bars injected via script -->
+                </div>
+            </div>
+
+            <!-- Reputation Score -->
+            <div class="card side-card" style="text-align: center; display: flex; flex-direction: column; justify-content: center;">
+                <span class="label">Reputation Index</span>
+                <div class="value-hero" id="reputation-score">0</div>
+                <p class="value-unit">Autonomy Quotient (AQ)</p>
+                <div style="margin-top: 24px; padding-top: 24px; border-top: 1px solid var(--bg-border);">
+                    <p style="font-size: 0.75rem; color: var(--text-dim);">PROTOCOL STANDING: <b>ALPHA</b></p>
+                </div>
+            </div>
+
+            <!-- Stats Bar -->
+            <div class="stats-row">
+                <div class="card">
+                    <span class="label">Total Bounty</span>
+                    <div class="value-hero" style="font-size: 2rem;"><span id="total-earning">0</span> <span class="value-unit">PTS</span></div>
+                </div>
+                <div class="card">
+                    <span class="label">Daily Yield</span>
+                    <div class="value-hero" style="font-size: 2rem;"><span id="today-reward">0</span> <span class="value-unit">PTS</span></div>
+                </div>
+                <div class="card">
+                    <span class="label">System Load</span>
+                    <div class="value-hero" style="font-size: 2rem;"><span id="cpu-load">0</span> <span class="value-unit">%</span></div>
+                </div>
+                <div class="card">
+                    <span class="label">Intelligence Cache</span>
+                    <div class="value-hero" style="font-size: 2rem;"><span id="storage-used">0</span> <span class="value-unit">MB</span></div>
+                </div>
+            </div>
+
+            <!-- Intelligence Terminal -->
+            <div class="card terminal-card">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
                     <div>
-                        <span class="stat-label">Autonomous Engine:</span>
-                        <h2 style="font-size: 1.25rem;">SAP-NODE-EX-992</h2>
-                        <span id="agent-id-mini" style="font-size: 0.7rem; color: var(--text-dim);">ID: 0x992...BETA</span>
+                        <span class="label">Execution Feed</span>
+                        <h3>Real-time Intelligence Logs</h3>
                     </div>
-                    <div class="status-indicator">CONNECTED</div>
                 </div>
-
-                <div class="gauge-container">
-                    <div class="arc-gauge" id="arc-gauge">
-                        <!-- Filled via script -->
-                        <div class="arc-segment active" style="transform: rotate(-60deg)"></div>
-                        <div class="arc-segment active" style="transform: rotate(-45deg)"></div>
-                        <div class="arc-segment active" style="transform: rotate(-30deg)"></div>
-                        <div class="arc-segment active" style="transform: rotate(-15deg)"></div>
-                        <div class="arc-segment active" style="transform: rotate(0deg)"></div>
-                        <div class="arc-segment active" style="transform: rotate(15deg)"></div>
-                        <div class="arc-segment active" style="transform: rotate(30deg)"></div>
-                        <div class="arc-segment" style="transform: rotate(45deg)"></div>
-                        <div class="arc-segment" style="transform: rotate(60deg)"></div>
-                    </div>
-                    <h1 class="aq-score" id="reputation-score">713</h1>
-                    <p class="aq-label">Autonomy Quotient (AQ)</p>
-                </div>
-
-                <div class="optimization-list">
-                    <span class="nav-label">Protocol Improvements</span>
-                    <div class="opt-item">
-                        <span class="opt-text">1. Increase Topic Depth</span>
-                        <button class="btn-outline">Optimize</button>
-                    </div>
-                    <div class="opt-item">
-                        <span class="opt-text">2. Expand Discovery Range</span>
-                        <button class="btn-outline">Optimize</button>
-                    </div>
-                    <div class="opt-item">
-                        <span class="opt-text">3. Harden x402 Settlement</span>
-                        <button class="btn-outline">Optimize</button>
+                <div class="terminal-stream" id="analysis-feed">
+                    <div class="term-line">
+                        <span class="term-time">[SYSTEM]</span>
+                        <span class="term-msg">Awaiting autonomous cycle trigger...</span>
                     </div>
                 </div>
             </div>
-
-            <!-- Right Column: Earnings -->
-            <div class="stats-column">
-                <div class="card compact-card bg-lime">
-                    <span class="stat-label">Total Research Bounty</span>
-                    <h1 class="stat-value" id="total-earning">350 <span style="font-size: 1rem; opacity: 0.6;">PTS</span></h1>
-                </div>
-                <div class="card compact-card bg-blue">
-                    <span class="stat-label">Today's Protocol Yield</span>
-                    <h1 class="stat-value" id="today-reward">50 <span style="font-size: 1rem; opacity: 0.6;">PTS</span></h1>
-                </div>
-                <!-- Network Stats Card -->
-                <div class="card" style="padding: 24px;">
-                    <span class="stat-label">Node Network Health</span>
-                    <div style="display: flex; flex-direction: column; gap: 12px; margin-top: 20px;">
-                        <div style="display: flex; justify-content: space-between; font-size: 0.8rem;">
-                            <span style="color: var(--text-dim);">IP Address:</span>
-                            <span style="font-weight: 600;">192.158.1.38</span>
-                        </div>
-                        <div style="display: flex; justify-content: space-between; font-size: 0.8rem;">
-                            <span style="color: var(--text-dim);">Protocol Version:</span>
-                            <span style="font-weight: 600;">v1.4.2-STABLE</span>
-                        </div>
-                        <div style="display: flex; justify-content: space-between; font-size: 0.8rem;">
-                            <span style="color: var(--text-dim);">Latency:</span>
-                            <span style="font-weight: 600; color: var(--success);">24ms</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Right: Volume Monitor -->
-            <div class="card stats-column" style="padding: 24px;">
-                <div class="chart-header">
-                    <span class="stat-label">Research Volume</span>
-                    <select style="border: none; background: #f8fafc; font-size: 0.75rem; padding: 4px 8px; border-radius: 4px;">
-                        <option>Hourly</option>
-                        <option>Daily</option>
-                    </select>
-                </div>
-                
-                <div class="bar-chart">
-                    <div class="chart-bar highlight" style="height: 40%;"></div>
-                    <div class="chart-bar highlight" style="height: 60%;"></div>
-                    <div class="chart-bar active" style="height: 85%;"></div>
-                    <div class="chart-bar highlight" style="height: 50%;"></div>
-                    <div class="chart-bar active" style="height: 90%;"></div>
-                    <div class="chart-bar highlight" style="height: 30%;"></div>
-                    <div class="chart-bar highlight" style="height: 45%;"></div>
-                </div>
-
-                <div class="gauge-row">
-                    <div style="text-align: center; flex: 1;">
-                        <div class="circle-gauge primary">85%</div>
-                        <p style="font-size: 0.7rem; color: var(--text-dim); margin-top: 8px;">Trust Rate</p>
-                    </div>
-                    <div style="text-align: center; flex: 1;">
-                        <div class="circle-gauge primary" style="border-top-color: var(--accent-purple);">75%</div>
-                        <p style="font-size: 0.7rem; color: var(--text-dim); margin-top: 8px;">Success Rate</p>
-                    </div>
-                </div>
-
-                <div style="margin-top: 32px; font-size: 0.8rem; border-top: 1px solid var(--border-color); padding-top: 16px;">
-                    <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
-                        <span style="color: var(--text-dim);">Load:</span>
-                        <strong>4-Core / 8-Thread</strong>
-                    </div>
-                    <div style="display: flex; justify-content: space-between;">
-                        <span style="color: var(--text-dim);">Storage:</span>
-                        <strong>600MB / 800MB</strong>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Terminal Strip: Live Thread Feed -->
-            <div class="terminal-strip" id="analysis-feed">
-                <div class="terminal-line">[SYSTEM] <b>NODE-992</b> handshaking with SAP Mainnet... DONE.</div>
-                <div class="terminal-line">[DATA] Discovery loop initiated. High-density topics detected.</div>
-            </div>
-
         </div>
-    </main>
+    </div>
 
-    <script src="script.js"></script>
+    <!-- Scripts -->
+    <script src="script.js?v=3.0"></script>
     <script>
         lucide.createIcons();
     </script>
