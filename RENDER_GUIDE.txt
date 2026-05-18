@@ -17,34 +17,33 @@ Render handles CI/CD automatically when connected to your GitHub repository.
 
 ---
 
-## 2. Setting Up Cron Jobs
-Your `render.yaml` already has the Cron Job pre-configured to run hourly.
+## 2. Setting Up External Cron Jobs (FREE)
+Render's built-in cron jobs are a paid feature. To keep your agent running 24/7 for free, we recommend using an external service like [cron-job.org](https://cron-job.org).
 
-### The Configuration in render.yaml:
-```yaml
-  - type: cron
-    name: sap-hourly-research
-    env: python
-    schedule: "0 * * * *"  # Runs every hour at minute 0
-    buildCommand: pip install -r requirements.txt
-    startCommand: python main.py
-```
+### Essential Jobs to Configure:
+You should set up two separate cron jobs pointing to your deployed API URL:
 
-### How to verify it:
-1.  Once the Blueprint is deployed, you will see a service named `sap-hourly-research`.
-2.  Click on it to see the **"Logs"**.
-3.  You can click **"Trigger Run"** manually in the Render UI to test it immediately.
-4.  On every run, it will:
-    - Boot up a fresh Python environment.
-    - Fetch new trending topics via `TopicEngine`.
-    - Execute the SAP discovery and Ace Data research.
-    - Settle payments and log results.
-    - Update the `agent_state.json` which your Dashboard UI then displays.
+1.  **Keep-Alive (Avoid Sleeping)**
+    - **URL**: `https://your-app-name.onrender.com/ping`
+    - **Schedule**: Every 14 minutes
+    - **Purpose**: Prevents Render from spinning down your web service.
+
+2.  **Trigger Research (Activity Volume)**
+    - **URL**: `https://your-app-name.onrender.com/trigger-run`
+    - **Schedule**: Every hour (or as desired)
+    - **Purpose**: Manually kicks off the autonomous research loop if the startup loop is idle.
+
+### Why this is better:
+- **Zero Cost**: Most external cron services have a generous free tier.
+- **Reliability**: Ensures your Dashboard is always "instant-load" for judges and users.
+- **Volume**: Consistently generates research logs every hour, which look great on your dashboard history.
 
 ---
 
-## 3. Best Practices for the Hackathon
-- **Monitoring**: Check the Cron Job logs to ensure the agent isn't hitting "402 Payment Required" errors (ensure your Ace Data Cloud account has credits).
-- **Free Tier Note**: Render's free tier web services spin down after 15 mins of inactivity. The Cron Job will still run fine, but the Dashboard might take a few seconds to "wake up" when someone first visits it.
+## 3. Dashboard UX & Visualization
+The new dashboard is designed to showcase the **Volume and Intensity** of your agent's work.
+- **Lifecycle Visualization**: Shows exactly where the agent is in the SAP/Ace loop.
+- **Raw Intelligence Feed**: A live terminal-style log that proves the agent is actively processing DePIN intelligence.
+- **Reputation (AQ)**: Reflects your agent's standing in the network based on successful settlements.
 
-🥇 **Goal**: By the time you submit to X/Twitter, your Cron Job should have at least 5-10 successful research runs visible in your dashboard's history!
+🥇 **Goal**: Aim for at least 10 entries in your "Raw Intelligence Feed" before submitting!

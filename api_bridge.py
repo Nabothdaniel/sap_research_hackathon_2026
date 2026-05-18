@@ -39,6 +39,11 @@ async def trigger_run(background_tasks: BackgroundTasks):
     background_tasks.add_task(run_agent)
     return {"status": "Research run triggered in background"}
 
+@app.get("/ping")
+async def ping():
+    """Simple health check endpoint to prevent server sleep."""
+    return {"status": "alive", "message": "Stay awake!"}
+
 @app.get("/")
 async def root():
     """Redirect root to the dashboard."""
