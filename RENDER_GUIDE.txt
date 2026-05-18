@@ -1,0 +1,50 @@
+# RENDER CI/CD & CRON JOB SETUP GUIDE
+
+This guide explains how to use the provided `render.yaml` to fully automate your SAP Research Agent on Render.
+
+## 1. CI/CD (Continuous Deployment)
+Render handles CI/CD automatically when connected to your GitHub repository.
+
+1.  Log in to [Render Dashboard](https://dashboard.render.com).
+2.  Click **"New +"** and select **"Blueprint"**.
+3.  Connect your GitHub repository: `sap_research_hackathon_2026`.
+4.  Render will automatically detect the `render.yaml` file.
+5.  **Environment Variables**: You must add your secrets in the Render Dashboard (under "Environment" or the Blueprints setup screen):
+    - `ACE_API_KEY`
+    - `SAP_API_KEY`
+    - `SOLANA_PRIVATE_KEY`
+6.  **Auto-Deploy**: Every time you `git push`, Render will automatically build the new version and redeploy the Dashboard and API.
+
+---
+
+## 2. Setting Up Cron Jobs
+Your `render.yaml` already has the Cron Job pre-configured to run hourly.
+
+### The Configuration in render.yaml:
+```yaml
+  - type: cron
+    name: sap-hourly-research
+    env: python
+    schedule: "0 * * * *"  # Runs every hour at minute 0
+    buildCommand: pip install -r requirements.txt
+    startCommand: python main.py
+```
+
+### How to verify it:
+1.  Once the Blueprint is deployed, you will see a service named `sap-hourly-research`.
+2.  Click on it to see the **"Logs"**.
+3.  You can click **"Trigger Run"** manually in the Render UI to test it immediately.
+4.  On every run, it will:
+    - Boot up a fresh Python environment.
+    - Fetch new trending topics via `TopicEngine`.
+    - Execute the SAP discovery and Ace Data research.
+    - Settle payments and log results.
+    - Update the `agent_state.json` which your Dashboard UI then displays.
+
+---
+
+## 3. Best Practices for the Hackathon
+- **Monitoring**: Check the Cron Job logs to ensure the agent isn't hitting "402 Payment Required" errors (ensure your Ace Data Cloud account has credits).
+- **Free Tier Note**: Render's free tier web services spin down after 15 mins of inactivity. The Cron Job will still run fine, but the Dashboard might take a few seconds to "wake up" when someone first visits it.
+
+🥇 **Goal**: By the time you submit to X/Twitter, your Cron Job should have at least 5-10 successful research runs visible in your dashboard's history!
