@@ -5,8 +5,9 @@
  * Handles real-time updates from the FastAPI bridge and UI animations.
  */
 
-// Use relative path for production (Render) or absolute for local dev
+// Use relative path for production (Render) - handle cases where / is or is not at root
 const API_BASE = window.location.origin; 
+const STATE_URL = API_BASE.includes('localhost') ? `${API_BASE}/state` : '/state';
 
 // --- UI State Management ---
 
@@ -42,7 +43,7 @@ const updateUI = (data) => {
 
 const fetchLatestState = async () => {
     try {
-        const response = await fetch(`${API_BASE}/state`);
+        const response = await fetch(STATE_URL);
         if (!response.ok) throw new Error('Network response was not ok');
         const data = await response.json();
         updateUI(data);

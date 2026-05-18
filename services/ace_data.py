@@ -47,14 +47,13 @@ class AceDataService:
             logger.warning("[ACE API 1] No valid API key — returning mock search results")
             return self._mock_search(query, max_results)
 
-        # Try /google first, then /serp as fallback
-        for path in ["/google", "/serp", "/web-search"]:
+        # Try several common Ace Data Cloud search variations
+        for path in ["/google", "/serp/google", "/v1/google"]:
             try:
+                # AceData /google specifically expects "q" or "query"
                 payload = {
                     "q": query,
-                    "query": query,       # some endpoints use 'query'
                     "num": max_results,
-                    "max_results": max_results,
                     "include_snippets": True,
                 }
                 async with httpx.AsyncClient() as client:
