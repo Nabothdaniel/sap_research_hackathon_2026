@@ -48,16 +48,16 @@
         <div class="top-bar">
             <div class="pill">
                 <i data-lucide="user-plus" style="width: 16px; color: var(--success);"></i>
-                Referrals: <strong>12</strong>
+                Referrals: <strong id="referral-val">12</strong>
             </div>
-            <button class="btn-dark">Copy API Hook</button>
+            <button class="btn-dark" onclick="copyApiHook()">Copy API Hook</button>
             <div class="pill">
                 <i data-lucide="medal" style="width: 16px; color: var(--primary);"></i>
-                Rank: <strong>Alpha</strong>
+                Rank: <strong id="rank-val">Alpha</strong>
             </div>
             <div class="pill" style="background: #f8fafc;">
                 <i data-lucide="wallet" style="width: 16px; color: #f59e0b;"></i>
-                Balance: <strong>2,250 PTS</strong>
+                Balance: <strong id="balance-val">2,250 PTS</strong>
             </div>
         </div>
 
@@ -170,7 +170,7 @@
                     </div>
                 </div>
 
-                <div style="margin-top: 32px; font-size: 0.8rem; border-top: 1px solid var(--border-color); pt: 16px;">
+                <div style="margin-top: 32px; font-size: 0.8rem; border-top: 1px solid var(--border-color); padding-top: 16px;">
                     <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
                         <span style="color: var(--text-dim);">Load:</span>
                         <strong>4-Core / 8-Thread</strong>
