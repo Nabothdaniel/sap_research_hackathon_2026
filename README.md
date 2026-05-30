@@ -79,6 +79,5 @@ This submission satisfies all requirements for the **Ace Data Cloud Usage Catego
 ---
 
 ## 📞 Contact & Demo
-- **X (Twitter)**: [@your-handle]
-- **Demo Video**: [Link to your video walkthrough]
-- **Synapse Explorer**: [Link to your Agent ID on Explorer]
+- X (Twitter): @dannywebtec
+- **Synapse Explorer**: https://sap-research-hackathon-2026.onrender.com/dashboard/index.html
